@@ -24,3 +24,23 @@ app.listen(port, (error) => {
     console.log("Error occurred, server can't start", error);
   }
 });
+
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'Soda48681.',
+  database: 'pet_service',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+
+})
+
+app.get('/users', async (req, res) => {
+
+  try {
+    const [rows, fields] = await pool.query('SELECT * FROM user'); res.json(rows);
+  } catch (error){
+    console.log(error.message);
+  }
+})
