@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account - PetCare Connect</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
+    <title>Create Account - DogGoDoc</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                 <a href="login.html" class="button button-ghost button-sm">Sign In</a>
                 <a href="register.html" class="button button-sm">Get Started</a>
             </div>
-        </div>
+        </div>  
     </nav>
     <main class="login-main">
         <div class="card login-card">
@@ -36,7 +36,7 @@
                 <p class="card-description">Join our pet care community</p>
             </div>
             <div class="card-content">
-                <form class="login-form">
+                <form class="login-form"id="registerForm" method= "post">
                     <div class="form-group">
                         <label for="name" class="label">Full Name</label>
                         <input id="name" type="text" placeholder="John Doe" class="input" required>
@@ -61,13 +61,13 @@
                 <div class="link-group">
                     <p class="text-muted">
                         Already have an account?
-                        <a href="#" class="link-primary">Sign in</a>
+                        <a href= "login.html" class="link-primary">Sign in</a>
                     </p>
                 </div>
             </div>
         </div>
     </main>
-
+    <script src="./js/register.js"></script>
 </body>
 
 </html>
