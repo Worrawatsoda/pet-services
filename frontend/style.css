@@ -1,0 +1,353 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+/* 1. CSS Variables (จาก app/globals.css) */
+:root {
+    --background: oklch(0.99 0.005 200);
+    --foreground: oklch(0.2 0.01 220);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.2 0.01 220);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.2 0.01 220);
+    --primary: oklch(0.55 0.12 200);
+    --primary-foreground: oklch(0.99 0 0);
+    --secondary: oklch(0.96 0.01 200);
+    --secondary-foreground: oklch(0.2 0.01 220);
+    --muted: oklch(0.96 0.01 200);
+    --muted-foreground: oklch(0.5 0.01 220);
+    --accent: oklch(0.7 0.15 40);
+    --accent-foreground: oklch(0.99 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.99 0 0);
+    --border: oklch(0.9 0.01 200);
+    --input: oklch(0.9 0.01 200);
+    --ring: oklch(0.55 0.12 200);
+    --radius: 0.75rem;
+    --BG_homeauth: oklch(0.98 0.01 220);
+}
+
+/* 2. Base Styles */
+* {
+    box-sizing: border-box;
+    border-color: var(--border);
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 3. Container Utility */
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+    .container {
+        max-width: 640px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1024px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+}
+
+/* 4. Component Styles (แปลจาก Tailwind) */
+
+/* Button (จาก components/ui/button.tsx) */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    /* text-sm */
+    line-height: 1.25rem;
+    font-weight: 500;
+    /* font-medium */
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.5rem 1rem;
+    /* size: default */
+    height: 2.25rem;
+    /* size: default */
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.button:hover {
+    background-color: var(--primary);
+    opacity: 0.9;
+}
+
+.button:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Button Variants */
+.button.button-ghost {
+    background-color: transparent;
+    color: var(--foreground);
+}
+
+.button.button-ghost:hover {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+    opacity: 1;
+}
+
+/* Button Sizes */
+.button.button-sm {
+    height: 2rem;
+    /* h-8 */
+    padding: 0.25rem 0.75rem;
+    /* px-3 */
+    gap: 0.375rem;
+    /* gap-1.5 */
+}
+
+.button.button-full-width {
+    width: 100%;
+}
+
+/* Input (จาก components/ui/input.tsx) */
+.input {
+    border-color: var(--input);
+    height: 2.25rem;
+    /* h-9 */
+    width: 100%;
+    min-width: 0;
+    border-radius: var(--radius);
+    border-width: 1px;
+    background-color: transparent;
+    padding: 0.25rem 0.75rem;
+    /* py-1 px-3 */
+    font-size: 0.875rem;
+    /* md:text-sm */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* shadow-xs */
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.input:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px oklch(from var(--ring) l c h / 0.5);
+}
+
+.input::placeholder {
+    color: var(--muted-foreground);
+}
+
+/* Label (จาก components/ui/label.tsx) */
+.label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1rem;
+    font-weight: 500;
+    user-select: none;
+}
+
+/* Card (จาก components/ui/card.tsx) */
+.card {
+    background-color: var(--card);
+    color: var(--card-foreground);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    /* gap-6 */
+    border-radius: calc(var(--radius) + 4px);
+    /* rounded-xl */
+    border-width: 1px;
+    padding-top: 1.5rem;
+    /* py-6 */
+    padding-bottom: 1.5rem;
+    /* py-6 */
+    box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.1), 0 2px 6px 2px rgba(0, 0, 0, 0.1);
+    /* shadow-sm */
+}
+
+.card-header {
+    display: grid;
+    align-items: flex-start;
+    gap: 0.5rem;
+    /* gap-2 */
+    padding-left: 1.5rem;
+    /* px-6 */
+    padding-right: 1.5rem;
+    /* px-6 */
+}
+
+.card-title {
+    font-size: 1.5rem;
+    /* text-2xl */
+    line-height: 2rem;
+    font-weight: 700;
+    /* font-bold */
+}
+
+.card-description {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    /* text-sm */
+}
+
+.card-content {
+    padding-left: 1.5rem;
+    /* px-6 */
+    padding-right: 1.5rem;
+    /* px-6 */
+}
+
+/* login.css */
+
+/* สไตล์จาก SiteHeader (components/site-header.tsx) */
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    border-bottom: 1px solid oklch(from var(--border) l c h / 0.4);
+    background-color: oklch(from var(--background) l c h / 0.95);
+    backdrop-filter: blur(4px);
+}
+
+.header-container {
+    display: flex;
+    height: 4rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+}
+
+
+.logo-icon {
+    width: 192.25px;
+    height: 36px;
+    object-fit: cover;
+    /* อาจจะเพิ่มสไตล์อื่นๆ เช่น การจัดตำแหน่ง */
+}
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: transparent;
+    border: none
+}
+
+nav-link {
+    font-weight: 600;
+    /* "semibold" */
+    font-size: 14px;
+    color: var(--foreground);
+    transition: color 0.2s;
+}
+
+
+.header-nav-auth {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+
+
+/* สไตล์จาก Login Page (app/login/page.tsx) */
+body {
+    /* ทำให้ body สูงเต็มจอเพื่อให้ main-content อยู่ตรงกลางได้ */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-main {
+    flex: 1 1 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background-color: var(--BG_homeauth);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 28rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-error {
+    font-size: 0.875rem;
+    color: var(--destructive);
+}
+
+.link-group {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.text-muted {
+    color: var(--muted-foreground);
+}
+
+.link-primary {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.link-primary:hover {
+    text-decoration: underline;
+}
