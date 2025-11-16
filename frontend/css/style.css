@@ -405,7 +405,7 @@ body {
     max-width: 360px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: start;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.5s, box-shadow 0.5s;
 }
 
 .card:hover {
@@ -415,14 +415,14 @@ body {
 
 .card-icon {
     font-size: 24px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .card h3{
     font-size: 24px;
     color: #000000;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .card p {
@@ -443,6 +443,63 @@ body {
     font-weight: bold;
     width: 100%;
     transition: background 0.3s;
+}
+.btn-card:hover {
+    background: #00796b;
+}
+
+/* why section */
+
+.why-section {
+    padding: 80px 0;
+    background: #E4F6F6;
+    text-align: center;
+    width: 100%;
+}
+.why-section h2 {
+    font-size: 36px;
+    color: #333333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.why-description {
+    font-size: 18px;
+    color: #000000;
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+}
+
+.feature {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.feature {
+    padding: 10px;
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+        
+.feature h4 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.feature p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
 }
 
 
