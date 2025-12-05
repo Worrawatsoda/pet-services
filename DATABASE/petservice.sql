@@ -25,10 +25,9 @@ CREATE TABLE IF NOT EXISTS services (
     image_url VARCHAR(255)
 );
 INSERT INTO services (type, name, description, address, phone, rating, reviews_count, image_url) VALUES 
--- 1. โรงพยาบาลสัตว์ขนาดใหญ่ (ใช้รูป modern-animal-hospital.jpg)
-('veterinary', 'คลินิกสัตวแพทย์ทองหล่อ', 'บริการรักษาสัตว์ครบวงจร 24 ชม.', 'ถนนทองหล่อ กรุงเทพฯ', '02-712-6301', 4.8, 120),
-('veterinary', 'โรงพยาบาลสัตว์เล็กจุฬาฯ', 'ศูนย์การแพทย์สัตว์เลี้ยง', 'ปทุมวัน กรุงเทพฯ', '02-218-9715', 4.7, 98),
-('veterinary', 'iVet Animal Hospital', 'โรงพยาบาลสัตว์ไอเว็ท', 'พระราม 9 กรุงเทพฯ', '02-641-5525', 4.5, 75),
+('veterinary', 'คลินิกสัตวแพทย์ทองหล่อ', 'บริการรักษาสัตว์ครบวงจร 24 ชม.', 'ถนนทองหล่อ กรุงเทพฯ', '02-712-6301', 4.8, 120, NULL),
+('veterinary', 'โรงพยาบาลสัตว์เล็กจุฬาฯ', 'ศูนย์การแพทย์สัตว์เลี้ยง', 'ปทุมวัน กรุงเทพฯ', '02-218-9715', 4.7, 98, NULL),
+('veterinary', 'iVet Animal Hospital', 'โรงพยาบาลสัตว์ไอเว็ท', 'พระราม 9 กรุงเทพฯ', '02-641-5525', 4.5, 75, NULL),
 ('chaperone', 'Safe Paws Transport', 'Climate-Controlled Van, SUV | 8 years experience', 'San Francisco, CA', '081-234-5678', 4.9, 156, 'pet-transport-van-with-logo.jpg'),
 ('chaperone', 'Pet Ride Pro', 'Sedan, SUV | 5 years experience', 'San Francisco, CA', '089-987-6543', 4.8, 203, 'pet-taxi-service-vehicle.jpg'),
 ('chaperone', 'Quick Pet Taxi', 'Motorcycle, Sedan | 2 years experience', 'Bangkok, TH', '02-111-2222', 4.5, 89, NULL),
