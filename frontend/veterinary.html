@@ -28,7 +28,7 @@
                 <a href="/register" class="button button-sm">Get Started</a>
             </div>
         </div>
-
+    </nav>
     <main class="vet-main">
 
         <section class="vet-header-section">
@@ -101,124 +101,24 @@
                     </div>
                 </aside>
 
-                <div class="vet-results">
-                    <div class="results-header">
-                        <p class="text-muted">4 clinics found</p>
-                        <button class="button button-outline button-sm mobile-filter-toggle">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <line x1="4" x2="20" y1="21" y2="21" />
-                                <line x1="4" x2="20" y1="3" y2="3" />
-                                <line x1="4" x2="20" y1="12" y2="12" />
-                                <line x1="4" x2="8" y1="8" y2="12" />
-                                <line x1="16" x2="20" y1="16" y2="12" />
-                            </svg>
-                            Filters
-                        </button>
-                    </div>
-
-                    <div class="vet-card-grid">
-
-                        <div class="card vet-card">
-                            <div class="vet-card-image">
-                                <div class="image-placeholder" style="background-color: #e5e5e5;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" style="color: #a3a3a3;">
-                                        <path
-                                            d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2Z" />
-                                        <path d="m3 14 5-5" />
-                                        <path d="m8.5 8.5 5 5" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="card-content vet-card-content">
-                                <div class="vet-card-header">
-                                    <h3 class="vet-name">Paws & Claws Animal Hospital</h3>
-                                    
-                                </div>
-
-                                <div class="vet-rating">
-                                    <div class="rating-stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="star-filled">
-                                            <polygon
-                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                        </svg>
-                                        <span>4.8</span>
-                                    </div>
-                                    <span class="text-muted">(234 reviews)</span>
-                                </div>
-
-                                
-
-                                <div class="vet-tags">
-                                    <span class="badge badge-secondary">General Care</span>
-                                    <span class="badge badge-secondary">Surgery</span>
-                                    <span class="badge badge-secondary">Dental</span>
-                                </div>
-
-                                
-
-                                <a href="#" class="button button-full-width">View Details</a>
-                            </div>
+                    <div class="vet-results">
+                        <div class="results-header">
+                            <p class="text-muted" id="result-count">Loading...</p>
                         </div>
 
-                        <div class="card vet-card">
-                            <div class="vet-card-image">
-                                <div class="image-placeholder" style="background-color: #e5e5e5;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" style="color: #a3a3a3;">
-                                        <path
-                                            d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2Z" />
-                                        <path d="m3 14 5-5" />
-                                        <path d="m8.5 8.5 5 5" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="card-content vet-card-content">
-                                <div class="vet-card-header">
-                                    <h3 class="vet-name">Bay Area Emergency Vet</h3>
-                                    <div class="vet-location">
-                                    </div>
-                                </div>
-
-                                <div class="vet-rating">
-                                    <div class="rating-stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="star-filled">
-                                            <polygon
-                                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                        </svg>
-                                        <span>4.9</span>
-                                    </div>
-                                    <span class="text-muted">(567 reviews)</span>
-                                </div>
-
-                    
-
-                                <div class="vet-tags">
-                                    <span class="badge badge-secondary">Emergency Care</span>
-                                    <span class="badge badge-secondary">Critical Care</span>
-                                    <span class="badge badge-secondary">+3 more</span>
-                                </div>
-
-                                <a href="#" class="button button-full-width">View Details</a>
-                            </div>
+                        <div id="vet-card-container" class="vet-card-grid">
                         </div>
 
+                        <div id="pagination-controls"
+                            style="display: flex; justify-content: center; gap: 10px; margin-top: 2rem;">
+                        </div>
                     </div>
-                </div>
+
             </div>
         </section>
     </main>
     <script src="js/nav-auth.js"></script>
+    <script src="js/veterinary.js"></script>
 </body>
 
 </html>

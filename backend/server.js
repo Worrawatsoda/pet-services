@@ -20,36 +20,36 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // 1. หน้าหลัก (Homepage)
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/homepage.html'));
+  res.sendFile(path.join(__dirname, '../frontend/homepage.html'));
 });
 
 // 2. หน้าเข้าสู่ระบบ (Login)
 app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/login.html'));
 });
 
 // 3. หน้าสมัครสมาชิก (Register)
 app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/register.html'));
+  res.sendFile(path.join(__dirname, '../frontend/register.html'));
 });
 
 // 4. หน้าค้นหาโรงพยาบาลสัตว์ (Veterinary)
 app.get('/veterinary', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/veterinary.html'));
+  res.sendFile(path.join(__dirname, '../frontend/veterinary.html'));
 });
 
 // 5. หน้าบริการขนส่ง (Transport) - เชื่อมกับไฟล์ chaperone.html
 app.get('/transport', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/chaperone.html'));
+  res.sendFile(path.join(__dirname, '../frontend/chaperone.html'));
 });
 
 // 6. หน้าโปรไฟล์ (Profile)
 app.get('/profile', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/profile.html'));
+  res.sendFile(path.join(__dirname, '../frontend/profile.html'));
 });
 
 app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/about.html'));
+  res.sendFile(path.join(__dirname, '../frontend/about.html'));
 });
 
 
@@ -57,8 +57,8 @@ app.get('/about', (req, res) => {
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'Soda48681.', 
-  database: 'pet_service', 
+  password: 'Soda48681.',
+  database: 'pet_service',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -134,4 +134,101 @@ app.put('/api/users/:id', async (req, res) => {
 app.listen(port, (error) => {
   if (!error) console.log("Server running at http://localhost:" + port);
   else console.log("Error server can't start", error);
+});
+
+// --- [เพิ่ม] API สำหรับดึงข้อมูล Veterinary ---
+app.get('/api/veterinary', async (req, res) => {
+  try {
+    // ดึงข้อมูลที่มี type เป็น 'veterinary'
+    const [rows] = await pool.query("SELECT * FROM services WHERE type = 'veterinary'");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// --- [เพิ่ม] Route สำหรับหน้า Detail (veterinary/1, veterinary/2) ---
+app.get('/veterinary/:id', (req, res) => {
+  // ส่งไฟล์หน้ารายละเอียดไป (เดี๋ยวเราค่อยไปสร้างไฟล์นี้ หรือใช้ไฟล์เดิมประยุกต์)
+  // เบื้องต้นให้ส่งหน้า veterinary.html ไปก่อน หรือสร้าง veterinary-detail.html แยก
+  // แต่ถ้าจะทำหน้าแยก ให้ใช้บรรทัดล่างนี้:
+  res.sendFile(path.join(__dirname, '../frontend/veterinary-detail.html'));
+});
+
+// --- [เพิ่ม] API สำหรับดึงข้อมูล Clinic รายตัว ---
+app.get('/api/veterinary/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const [rows] = await pool.query("SELECT * FROM services WHERE id = ?", [id]);
+    if (rows.length === 0) return res.status(404).json({ error: 'Not found' });
+    res.json(rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+// --- [เพิ่ม] API ดึงข้อมูล Veterinary ---
+app.get('/api/veterinary', async (req, res) => {
+    try {
+        // เลือกข้อมูลจากตาราง services ที่เป็นประเภท 'veterinary'
+        const [rows] = await pool.query("SELECT * FROM services WHERE type = 'veterinary'");
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+app.get('/api/veterinary', async (req, res) => {
+    // 1. รับค่า page และกำหนดจำนวนต่อหน้า (limit)
+    const page = parseInt(req.query.page) || 1;
+    const limit = 6; // โชว์หน้าละ 6 รายการ (ปรับเลขนี้ได้)
+    const offset = (page - 1) * limit;
+
+    try {
+        // 2. คิวรี่ข้อมูลตามจำนวนที่กำหนด (LIMIT / OFFSET)
+        const [rows] = await pool.query(
+            "SELECT * FROM services WHERE type = 'veterinary' LIMIT ? OFFSET ?", 
+            [limit, offset]
+        );
+
+        // 3. นับจำนวนข้อมูลทั้งหมดเพื่อคำนวณจำนวนหน้า
+        const [countResult] = await pool.query(
+            "SELECT COUNT(*) as count FROM services WHERE type = 'veterinary'"
+        );
+        const totalItems = countResult[0].count;
+        const totalPages = Math.ceil(totalItems / limit);
+
+        // 4. ส่งข้อมูลกลับไปพร้อมรายละเอียด Pagination
+        res.json({
+            data: rows,
+            pagination: {
+                currentPage: page,
+                totalPages: totalPages,
+                totalItems: totalItems
+            }
+        });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+// --- [เพิ่ม] API ดึงข้อมูล Chaperone ---
+app.get('/api/chaperone', async (req, res) => {
+    try {
+        // เลือกข้อมูลที่มี type เป็น 'chaperone'
+        const [rows] = await pool.query("SELECT * FROM services WHERE type = 'chaperone'");
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
+
+// --- [เพิ่ม] Route หน้า Detail ของ Chaperone (ถ้ามี) ---
+app.get('/transport/:id', (req, res) => {
+    // ส่งไฟล์หน้ารายละเอียด (ถ้ายังไม่ได้สร้าง ให้ใช้หน้าหลักไปก่อน หรือสร้าง chaperone-detail.html)
+    // res.sendFile(path.join(__dirname, '../frontend/chaperone-detail.html')); 
+    // หรือถ้าจะใช้หน้าเดิมแบบง่ายๆ:
+    res.sendFile(path.join(__dirname, '../frontend/chaperone.html'));
 });
