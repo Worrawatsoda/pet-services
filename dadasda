@@ -1,0 +1,115 @@
+[33mcommit 5fc2a3d2ee8bf921e486da245e22395b8ea9dbe8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Fri Dec 5 18:42:02 2025 +0700
+
+    updateroute
+
+[33mcommit 01bd177e623f56f4c0c53708e7744d7278154ca0[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Wed Nov 26 15:20:30 2025 +0700
+
+    addnewcardandchaperonepage
+
+[33mcommit 9dfbf52f7ea758a98f5f56b4dd2953f834ca88c5[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Mon Nov 24 14:30:44 2025 +0700
+
+    edit-class-cardhomepage
+
+[33mcommit 55c35c2c7db162584659be57ed34c78fd7de8e4b[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Mon Nov 17 02:32:46 2025 +0700
+
+    HomeEditUpdate
+
+[33mcommit f007da732dd078db635cd1f7972f74b4e30cee1d[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Mon Nov 17 01:41:40 2025 +0700
+
+    buttonact
+
+[33mcommit 32328df71f6c5ce3747358d5a5e029e08c834d3b[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Mon Nov 17 01:37:58 2025 +0700
+
+    Update style.css
+
+[33mcommit 6122ece5491705eab923bbfe800df58b07edb1a6[m
+Merge: 9937b77 77f52dc
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Mon Nov 17 01:35:08 2025 +0700
+
+    Merge branch 'main' of https://github.com/Worrawatsoda/pet-services
+
+[33mcommit 9937b7757e3fe88cfd6af581aeea737827e44b94[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Mon Nov 17 01:29:49 2025 +0700
+
+    HomepageEditAndFontUpdate
+
+[33mcommit 77f52dc7f40337f58e1d9614f1aec00b4c16382e[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Mon Nov 17 01:16:21 2025 +0700
+
+    profilepage
+
+[33mcommit 1564a3f3d75ddb4ad10f6f9b65d22d3614f8196d[m
+Merge: deb9fcf 05a5ef6
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Sun Nov 16 02:30:05 2025 +0700
+
+    Merge branch 'main' of https://github.com/Worrawatsoda/pet-services
+
+[33mcommit deb9fcf7abceac1652bfe477edea7cb8b3389f36[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Sun Nov 16 02:28:57 2025 +0700
+
+    homenotfin
+
+[33mcommit 05a5ef66281e92e40749f1868d52a6cf18e04e0f[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Sun Nov 16 02:28:01 2025 +0700
+
+    newloginbugedit
+
+[33mcommit 047ebcdacdd79982d09cb1cde288f185c1aa30c1[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Sat Nov 15 20:05:03 2025 +0700
+
+    New_edit
+
+[33mcommit 14f2beede078ae76f256575129374e1acfb8ee57[m
+Author: chxnyxr <chanyar02@gmail.com>
+Date:   Sat Nov 15 19:37:45 2025 +0700
+
+    Create landingpage.html
+
+[33mcommit e422c55719ab468587f421fa975a0021cc1942a4[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Sat Nov 15 14:52:35 2025 +0700
+
+    linkHref
+
+[33mcommit b36c6559ebf6807420b6ad44fddce113380c8dc6[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Sat Nov 15 14:41:47 2025 +0700
+
+    Loginpage&Registerpage
+
+[33mcommit 42104695402ecb46e33cd041f4b68ac16dad4c3c[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Fri Nov 14 03:10:49 2025 +0700
+
+    'new_edit'
+
+[33mcommit 469aadb0f2ea7bc2085fdf3b1c7e497be649c04e[m
+Author: Worrawatsoda <Worrawatsoda@gmail.com>
+Date:   Fri Nov 14 01:10:38 2025 +0700
+
+    'set-up_backend'
+
+[33mcommit 34d80c07677fd3f9f35b617b22598c1e7fe5d469[m
+Author: Worrawatsoda <150605942+Worrawatsoda@users.noreply.github.com>
+Date:   Fri Nov 14 01:07:43 2025 +0700
+
+    Initial commit
