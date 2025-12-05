@@ -109,7 +109,7 @@ app.post('/api/auth/login', async (req, res) => {
 // Get Users
 app.get('/api/users', async (req, res) => {
   try {
-    const [rows] = await pool.query('SELECT user_id, name, email, role FROM User');
+    const [rows] = await pool.query('SELECT user_id, name, email, password, role FROM User');
     res.json(rows);
   } catch (error) {
     res.status(500).json({ message: "Error fetching users: " + error.message });

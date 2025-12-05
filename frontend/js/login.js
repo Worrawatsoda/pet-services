@@ -22,7 +22,7 @@ loginForm.addEventListener('submit', async (e) => {
             // Store the token in localStorage or a cookie
             localStorage.setItem('token', data.token);
             // Redirect to dashboard or home page
-            window.location.href = 'dashboard.html';
+            window.location.href = 'homepage.html';
         } else {
             alert(`Login failed: ${data.error || data.message}`);
         }
