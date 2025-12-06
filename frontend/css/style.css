@@ -1294,4 +1294,284 @@ body {
     line-height: 1.625;
     font-size: 1.125rem;
 }
+/* vet-detail.css */
 
+.vet-detail-main {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Back Link */
+.back-link {
+    margin-bottom: 1.5rem;
+    display: inline-flex;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+/* Hero Image */
+.vet-hero-image {
+    position: relative;
+    height: 24rem; /* h-96 */
+    width: 100%;
+    border-radius: 0.75rem; /* rounded-xl */
+    overflow: hidden;
+    margin-bottom: 2rem; /* mb-8 */
+    background-color: var(--muted);
+}
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.hero-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Badge Styles (reused) */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 0.375rem;
+    border: 1px solid transparent;
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+}
+.badge-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+}
+.badge-accent {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+}
+
+/* Grid Layout */
+.vet-detail-grid {
+    display: grid;
+    gap: 2rem;
+}
+@media (min-width: 1024px) {
+    .vet-detail-grid {
+        grid-template-columns: 2fr 1fr; /* lg:grid-cols-3 (col-span-2 space-y-8) */
+    }
+}
+
+/* Left Column Info */
+.vet-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* space-y-8 */
+}
+
+/* Header Info */
+.vet-title {
+    font-size: 2.25rem; /* 4xl */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+.vet-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.rating-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.rating-box.large .rating-val {
+    font-size: 1.5rem; /* text-2xl */
+}
+.star-icon {
+    color: var(--primary);
+    fill: currentColor;
+}
+.rating-val {
+    font-size: 1.25rem; /* xl */
+    font-weight: 600;
+}
+.review-count {
+    color: var(--muted-foreground);
+}
+.location-box {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--muted-foreground);
+}
+.vet-desc {
+    font-size: 1.125rem; /* lg */
+    color: var(--muted-foreground);
+    line-height: 1.75;
+}
+
+/* Detail Cards */
+.detail-card .card-content {
+    padding: 1.5rem;
+}
+.card-heading {
+    font-size: 1.5rem; /* 2xl */
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* Services */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Hours */
+.hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* space-y-2 */
+}
+.hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+.hours-row:last-child {
+    border-bottom: none;
+}
+.hours-row span:first-child {
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* Features */
+.features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.text-primary { color: var(--primary); }
+.text-accent { color: var(--accent); }
+
+/* Reviews Section */
+.reviews-section {
+    margin-top: 1rem;
+}
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.review-card .card-content {
+    padding: 1.5rem;
+}
+.review-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+}
+.reviewer-name {
+    font-weight: 600;
+    color: var(--foreground);
+}
+.review-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem; /* mb-2 */
+}
+.star-icon.small {
+    width: 1rem;
+    height: 1rem;
+    color: var(--primary);
+    fill: currentColor;
+}
+.review-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+.review-body {
+    color: var(--muted-foreground);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+.review-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Right Sidebar */
+.vet-sidebar-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+/* Contact Card */
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+.contact-item svg {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+.contact-label {
+    font-weight: 500;
+}
+.contact-val, .contact-link {
+    font-size: 0.875rem;
+}
+.contact-link {
+    color: var(--primary);
+}
+.contact-link:hover {
+    text-decoration: underline;
+}
+.mt-4 { margin-top: 1rem; }
+
+/* Quick Info */
+.quick-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+}
+.quick-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.font-medium { font-weight: 500; }

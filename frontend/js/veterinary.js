@@ -6,12 +6,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 1. ดึงข้อมูลจาก Backend
         const response = await fetch('/api/veterinary');
         if (!response.ok) throw new Error('Failed to fetch data');
-        const clinics = await response.json();
+        
+        // แก้ไข: รับข้อมูลเป็น Object ที่มี key 'data' (ตามที่ Server ส่งมาแบบ Pagination)
+        const responseData = await response.json();
+        const clinics = responseData.data; // ดึง Array ข้อมูลจริงออกมาจาก .data
 
-        // อัปเดตจำนวนรายการที่เจอ
-        if (resultCount) resultCount.textContent = `${clinics.length} clinics found`;
+        // อัปเดตจำนวนรายการที่เจอ (ใช้ totalItems ถ้ามี หรือนับจากจำนวนที่ดึงมา)
+        const totalFound = responseData.pagination ? responseData.pagination.totalItems : clinics.length;
+        if (resultCount) resultCount.textContent = `${totalFound} clinics found`;
 
-        // ล้างข้อมูลเก่า (ถ้ามี)
+        // ล้างข้อมูลเก่า
         container.innerHTML = '';
 
         if (clinics.length === 0) {
@@ -19,10 +23,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             return;
         }
 
-        // 2. Loop สร้างการ์ดแบบ vet-card
+        // 2. Loop สร้างการ์ด
         clinics.forEach(vet => {
-            
-            // ตรวจสอบรูปภาพ (ถ้าไม่มีใน DB ให้ใช้ Placeholder เดิมของคุณ)
+            // ตรวจสอบรูปภาพ
             const imageHTML = vet.image_url 
                 ? `<img src="img/${vet.image_url}" alt="${vet.name}" style="width:100%; height:100%; object-fit:cover;">`
                 : `<div class="image-placeholder" style="background-color: #e5e5e5; width:100%; height:100%; display:flex; align-items:center; justify-content:center; color: #a3a3a3;">
@@ -66,13 +69,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 </div>
             `;
-
-            // แทรก HTML ลงใน container
             container.insertAdjacentHTML('beforeend', cardHTML);
         });
 
     } catch (error) {
         console.error(error);
-        container.innerHTML = '<p style="color:red;">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>';
+        if (container) container.innerHTML = '<p style="color:red; text-align:center;">เกิดข้อผิดพลาดในการโหลดข้อมูล</p>';
     }
 });

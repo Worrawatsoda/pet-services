@@ -1,47 +1,118 @@
--- 1. สร้างฐานข้อมูล
-CREATE DATABASE IF NOT EXISTS pet_service;
-USE pet_service;
+-- 1. ตารางผู้ใช้งาน (Users)
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL, -- เก็บ Password ที่เข้ารหัสแล้ว
+    user_type VARCHAR(50) DEFAULT 'pet-owner', -- 'pet-owner' หรือ 'admin'
+    phone VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- 2. สร้างตาราง User
--- โค้ด server.js ของคุณใช้ฟิลด์: user_id, name, email, password, role
-CREATE TABLE IF NOT EXISTS User (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE veterinary_clinics (
+    id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    role VARCHAR(50) DEFAULT 'user',
+    description TEXT,
+    address TEXT NOT NULL,
+    city VARCHAR(100),
+    state VARCHAR(100),
+    phone VARCHAR(50),
+    email VARCHAR(255),
+    website VARCHAR(255),
+    image_url TEXT,
+    emergency_24_7 BOOLEAN DEFAULT FALSE, -- emergency24_7
+    accepts_walk_ins BOOLEAN DEFAULT FALSE, -- acceptsWalkIns
+    rating DECIMAL(2, 1) DEFAULT 0,
+    review_count INT DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS services (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    type ENUM('veterinary', 'chaperone') NOT NULL,
-    name VARCHAR(150) NOT NULL,
+-- ตารางเสริมสำหรับ Services ของคลินิก (เพื่อการ Filter)
+CREATE TABLE veterinary_services (
+    clinic_id INT REFERENCES veterinary_clinics(id) ON DELETE CASCADE,
+    service_name VARCHAR(100),
+    PRIMARY KEY (clinic_id, service_name)
+);
+
+-- 4. ตารางผู้ให้บริการรับส่ง (Pet Chaperones)
+CREATE TABLE pet_chaperones (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255) NOT NULL, -- ชื่อคนขับ
+    business_name VARCHAR(255), -- ชื่อธุรกิจ (ถ้ามี)
     description TEXT,
     address TEXT,
-    phone VARCHAR(20),
-    rating DECIMAL(2,1) DEFAULT 0.0,
-    reviews_count INT DEFAULT 0,
-    image_url VARCHAR(255)
+    city VARCHAR(100),
+    state VARCHAR(100),
+    zip_code VARCHAR(20),
+    phone VARCHAR(50),
+    email VARCHAR(255),
+    image_url TEXT,
+    price_range VARCHAR(10), -- $, $$, $$$
+    availability TEXT, -- ข้อความเช่น "Mon-Sun, 7 AM - 9 PM"
+    years_experience INT,
+    is_licensed BOOLEAN DEFAULT FALSE,
+    is_insured BOOLEAN DEFAULT FALSE,
+    rating DECIMAL(2, 1) DEFAULT 0,
+    review_count INT DEFAULT 0,
+    latitude DECIMAL(10, 8),
+    longitude DECIMAL(11, 8),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-INSERT INTO services (type, name, description, address, phone, rating, reviews_count, image_url) VALUES 
-('veterinary', 'คลินิกสัตวแพทย์ทองหล่อ', 'บริการรักษาสัตว์ครบวงจร 24 ชม.', 'ถนนทองหล่อ กรุงเทพฯ', '02-712-6301', 4.8, 120, NULL),
-('veterinary', 'โรงพยาบาลสัตว์เล็กจุฬาฯ', 'ศูนย์การแพทย์สัตว์เลี้ยง', 'ปทุมวัน กรุงเทพฯ', '02-218-9715', 4.7, 98, NULL),
-('veterinary', 'iVet Animal Hospital', 'โรงพยาบาลสัตว์ไอเว็ท', 'พระราม 9 กรุงเทพฯ', '02-641-5525', 4.5, 75, NULL),
-('chaperone', 'Safe Paws Transport', 'Climate-Controlled Van, SUV | 8 years experience', 'San Francisco, CA', '081-234-5678', 4.9, 156, 'pet-transport-van-with-logo.jpg'),
-('chaperone', 'Pet Ride Pro', 'Sedan, SUV | 5 years experience', 'San Francisco, CA', '089-987-6543', 4.8, 203, 'pet-taxi-service-vehicle.jpg'),
-('chaperone', 'Quick Pet Taxi', 'Motorcycle, Sedan | 2 years experience', 'Bangkok, TH', '02-111-2222', 4.5, 89, NULL),
-('chaperone', 'Safe Paws Transport', 'รถตู้ปรับอากาศ SUV ขนาดใหญ่ | ประสบการณ์ 8 ปี | มีกรงเดินทางมาตรฐาน', 'เขตจตุจักร, กรุงเทพฯ', '081-234-5678', 4.9, 156, 'pet-transport-van-with-logo.jpg'),
-('chaperone', 'Pet Ride Pro', 'รถเก๋ง Sedan และ SUV | ประสบการณ์ 5 ปี | รับส่ง 24 ชม.', 'เขตห้วยขวาง, กรุงเทพฯ', '089-987-6543', 4.8, 203, 'pet-taxi-service-vehicle.jpg'),
-('chaperone', 'Quick Pet Taxi', 'มอเตอร์ไซค์ และ Eco Car | ประสบการณ์ 2 ปี | ราคาประหยัด', 'เขตบางรัก, กรุงเทพฯ', '02-111-2222', 4.5, 89, NULL),
-('chaperone', 'VIP Pet Limo', 'รถลีมูซีนสำหรับสัตว์เลี้ยง | ความปลอดภัยสูง | มีผู้ช่วยดูแลระหว่างทาง', 'เขตปทุมวัน, กรุงเทพฯ', '090-555-9999', 5.0, 42, 'caring-pet-transport-driver.jpg'),
-('chaperone', 'Happy Tails Express', 'รับส่งทั่วไทย | รถกระบะติดแอร์ | ประสบการณ์ 10 ปี', 'อ.บางพลี, สมุทรปราการ', '087-654-3210', 4.7, 312, 'professional-pet-transport-van.jpg'),
-('chaperone', 'Buddy\'s Journey', 'รถบ้านส่วนตัว | รักสัตว์เหมือนลูก | แวะพักจอดฉี่ได้', 'เขตตลิ่งชัน, กรุงเทพฯ', '061-234-9876', 4.6, 67, 'professional-pet-transport-driver-with-van.jpg'),
-('chaperone', 'Care & Cure Ambulance', 'รถพยาบาลสัตว์ฉุกเฉิน | มีถังออกซิเจน | พนักงานผ่านการอบรมปฐมพยาบาล', 'เขตดอนเมือง, กรุงเทพฯ', '02-999-8888', 4.9, 180, 'pet-taxi-service.jpg'),
-('veterinary', 'โรงพยาบาลสัตว์ทองหล่อ', 'บริการรักษาสัตว์ครบวงจร 24 ชม. | ศูนย์โรคหัวใจ | ผ่าตัดส่องกล้อง', 'ถนนเพชรบุรีตัดใหม่, ห้วยขวาง, กรุงเทพฯ', '02-712-6301', 4.8, 1540, 'modern-animal-hospital.jpg'),
-('veterinary', 'Bangkok Emergency Vet', 'แผนกฉุกเฉินและวิกฤตสัตว์เลี้ยง 24 ชั่วโมง | มีธนาคารเลือด', 'เขตจตุจักร, กรุงเทพฯ', '02-555-9999', 4.9, 850, 'emergency-veterinary-hospital.jpg'),
-('veterinary', 'iVet Animal Hospital', 'ศูนย์ศัลยกรรมและกายภาพบำบัด | รักษาโดยแพทย์เฉพาะทาง', 'ถนนพระราม 9, กรุงเทพฯ', '02-641-5525', 4.6, 320, 'modern-veterinary-clinic-exterior.jpg'),
-('veterinary', 'คลินิกบ้านรักสัตว์เลี้ยง', 'บรรยากาศเป็นกันเอง | เน้นฉีดวัคซีนและตรวจสุขภาพทั่วไป', 'พุทธมณฑลสาย 2, ทวีวัฒนา', '081-234-5678', 4.7, 125, 'cozy-pet-clinic.jpg'),
-('veterinary', 'โรงพยาบาลสัตว์เล็ก จุฬาลงกรณ์', 'ศูนย์การแพทย์สัตว์เลี้ยงครบวงจร | เครื่องมือทันสมัยระดับสากล', 'ถนนอังรีดูนังต์, ปทุมวัน', '02-218-9715', 4.8, 2100, NULL),
-('veterinary', 'Cat Wellness Clinic', 'คลินิกรักษามะเร็งและอายุรกรรมแมวโดยเฉพาะ | แยกโซนสุนัข-แมว', 'สุขุมวิท 39, วัฒนา', '02-000-1111', 4.9, 450, NULL),
-('veterinary', 'Exotic Pet Care', 'รักษา กระต่าย หนู นก สัตว์เลื้อยคลาน | โดยหมอเฉพาะทาง', 'ลาดพร้าว 71, วังทองหลาง', '099-888-7777', 4.5, 98, NULL);
+
+-- ตารางเสริมสำหรับ Services ของ Chaperone
+CREATE TABLE chaperone_services (
+    chaperone_id INT REFERENCES pet_chaperones(id) ON DELETE CASCADE,
+    service_name VARCHAR(100), -- เช่น "Airport Transport", "Emergency"
+    PRIMARY KEY (chaperone_id, service_name)
+);
+
+-- ตารางเสริมสำหรับประเภทรถ (Vehicle Types)
+CREATE TABLE chaperone_vehicles (
+    chaperone_id INT REFERENCES pet_chaperones(id) ON DELETE CASCADE,
+    vehicle_type VARCHAR(100), -- เช่น "Van", "Sedan"
+    PRIMARY KEY (chaperone_id, vehicle_type)
+);
+
+-- ตารางเสริมสำหรับประเภทสัตว์ที่รับ (Pet Types)
+CREATE TABLE chaperone_accepted_pets (
+    chaperone_id INT REFERENCES pet_chaperones(id) ON DELETE CASCADE,
+    pet_type VARCHAR(100), -- เช่น "Dogs", "Cats"
+    PRIMARY KEY (chaperone_id, pet_type)
+);
+
+-- 5. ตารางรีวิว (Reviews)
+-- ออกแบบให้รองรับทั้ง Vet และ Chaperone ในตารางเดียว หรือแยกก็ได้
+-- อันนี้เป็นแบบรวม (Single Table Inheritance idea)
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id) ON DELETE SET NULL,
+    veterinary_clinic_id INT REFERENCES veterinary_clinics(id) ON DELETE CASCADE,
+    pet_chaperone_id INT REFERENCES pet_chaperones(id) ON DELETE CASCADE,
+    rating INT CHECK (rating >= 1 AND rating <= 5),
+    title VARCHAR(255),
+    comment TEXT,
+    helpful_count INT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    
+    -- Constraint: ต้องรีวิวอย่างใดอย่างหนึ่งเท่านั้น
+    CONSTRAINT one_target_only CHECK (
+        (veterinary_clinic_id IS NOT NULL AND pet_chaperone_id IS NULL) OR
+        (veterinary_clinic_id IS NULL AND pet_chaperone_id IS NOT NULL)
+    )
+);
+
+-- 6. ตารางรายการโปรด (Favorites)
+CREATE TABLE favorite_clinics (
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    clinic_id INT REFERENCES veterinary_clinics(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, clinic_id)
+);
+
+CREATE TABLE favorite_chaperones (
+    user_id INT REFERENCES users(id) ON DELETE CASCADE,
+    chaperone_id INT REFERENCES pet_chaperones(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, chaperone_id) 
+);

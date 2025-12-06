@@ -6,10 +6,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         // 1. ดึงข้อมูลจาก API
         const response = await fetch('/api/chaperone');
         if (!response.ok) throw new Error('Failed to fetch data');
-        const providers = await response.json();
+        
+        // [UPDATED] รองรับโครงสร้างข้อมูลแบบ Pagination ({ data: [], pagination: {} })
+        const responseData = await response.json();
+        const providers = responseData.data; 
 
         // อัปเดตจำนวนผลลัพธ์
-        if (resultCount) resultCount.textContent = `${providers.length} providers found`;
+        const totalFound = responseData.pagination ? responseData.pagination.totalItems : providers.length;
+        if (resultCount) resultCount.textContent = `${totalFound} providers found`;
 
         // ล้างข้อมูลเก่า
         container.innerHTML = '';
