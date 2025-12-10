@@ -1,132 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile - DogGoDoc</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>My Profile - DogGoDoc</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .profile-header-wrapper { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+        .section-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: #00858C; }
+        .section-header h2 { font-size: 1.25rem; font-weight: 700; color: var(--foreground); margin: 0; }
+        .favorites-grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+        @media (min-width: 768px) { .favorites-grid { grid-template-columns: 1fr 1fr; } }
+        .empty-state { text-align: center; padding: 2rem 0; color: var(--muted-foreground); }
+        .empty-state p { margin-bottom: 1rem; }
+        .teal-button { background-color: #00858C; color: white; border: none; }
+        .teal-button:hover { background-color: #006d73; opacity: 1; }
+        .btn-delete-review { background: none; border: none; cursor: pointer; color: #ef4444; padding: 4px; border-radius: 4px; transition: background-color 0.2s; }
+        .btn-delete-review:hover { background-color: #fee2e2; }
 
+        /* Settings Modal Styles */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5); display: none; justify-content: center; align-items: center; z-index: 1000;
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: white; width: 100%; max-width: 450px; padding: 2rem; border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative;
+        }
+        .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #666; }
+        .form-group { margin-bottom: 1rem; }
+        .form-label { display: block; margin-bottom: 0.5rem; font-weight: 500; font-size: 0.9rem; }
+        .form-input { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; }
+        .form-input:focus { border-color: #00858C; outline: none; }
+        .modal-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; }
+    </style>
 </head>
-
 <body>
-
     <nav class="site-header">
-        <div class="container header-container">
-            <a href="/" class="logo-link">
-                <div class="logo-icon-wrapper">
-                    <img class="logo-icon" src="img\DoggoDoc_LOGO.jpg" alt="Logo">
-                </div>
-            </a>
+       <div class="container header-container">
+            <a href="/" class="logo-link"><div class="logo-icon-wrapper"><img class="logo-icon" src="/img/DoggoDoc_LOGO.jpg" alt="Logo"></div></a>
             <div class="header-nav">
                 <a href="/veterinary" class="nav-link">Find a Vet</a>
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
-            <div class="header-nav-auth">
-                <a href="/login" class="button button-ghost button-sm">Sign In</a>
-                <a href="/register" class="button button-sm">Get Started</a>
-            </div>
+            <div class="header-nav-auth"></div>
         </div>
     </nav>
-    <main class="profile-main">
-        <div class="container profile-container">
 
-            <div class="profile-page-header">
+    <main style="padding: 3rem 0; min-height: 80vh;">
+        <div class="container">
+            
+            <div class="profile-header-wrapper">
                 <div>
-                    <h1>My Profile</h1>
-                    <p class="text-muted">Manage your pets and preferences</p>
+                    <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 0.25rem;">My Profile</h1>
+                    <p class="text-muted" id="user-name-display">User</p>
+                    <p class="text-muted" style="font-size: 0.9em;">Pet Owner</p>
                 </div>
-                <a href="#" class="button button-outline">
-                    <svg class="button-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path
-                            d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.1a2 2 0 0 1-1-1.72v-.51a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-                        <circle cx="12" cy="12" r="3" />
-                    </svg>
+                <button id="btn-open-settings" class="button button-outline">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
                     Settings
-                </a>
+                </button>
             </div>
 
-            <div class="profile-grid">
-
-
-
-                <section class="profile-section">
-                    <div class="profile-section-header">
-                        <div class="header-with-icon">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path
-                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
-                            </svg>
-                            <h2>Favorites</h2>
-                        </div>
-                    </div>
-
-                    <div class="favorites-grid">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title" style="font-size: 1.125rem;">Favorite Veterinary Clinics</h3>
-                                <p class="card-description">Quick access to your trusted vets</p>
-                            </div>
-                            <div class="card-content">
-                                <div class="favorites-empty-state">
-                                    <p class="text-muted" style="margin-bottom: 0.75rem;">No favorite vets yet</p>
-                                    <a href="#" class="button button-outline button-sm">Browse Vets</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title" style="font-size: 1.125rem;">Favorite Pet Transport</h3>
-                                <p class="card-description">Your trusted pet chaperones</p>
-                            </div>
-                            <div class="card-content">
-                                <div class="favorites-empty-state">
-                                    <p class="text-muted" style="margin-bottom: 0.75rem;">No favorite chaperones yet
-                                    </p>
-                                    <a href="#" class="button button-outline button-sm">Browse Transport</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section class="profile-section">
-                    <div class="profile-section-header">
-                        <div class="header-with-icon">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                            </svg>
-                            <h2>My Reviews</h2>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <div class="card-content reviews-card-content">
-                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="48" height="48"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                            </svg>
-                            <p class="text-muted" style="margin-bottom: 1rem;">View and manage your reviews</p>
-                            <a href="#" class="button">View All Reviews</a>
-                        </div>
-                    </div>
-                </section>
-
+            <div class="section-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                <h2>Favorites</h2>
             </div>
+            <div class="favorites-grid">
+                <div class="card" style="height: 100%;">
+                    <div class="card-content" style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="margin-bottom: 1rem;"><h3 style="font-size: 1.1rem; font-weight: 600;">Favorite Veterinary Clinics</h3><p class="text-muted" style="font-size: 0.9rem;">Quick access to your trusted vets</p></div>
+                        <div id="fav-vet-list" style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;"></div>
+                        <div id="fav-vet-empty" class="empty-state" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;"><p>No favorite vets yet</p><a href="/veterinary" class="button button-outline button-sm">Browse Vets</a></div>
+                    </div>
+                </div>
+                <div class="card" style="height: 100%;">
+                    <div class="card-content" style="display: flex; flex-direction: column; height: 100%;">
+                        <div style="margin-bottom: 1rem;"><h3 style="font-size: 1.1rem; font-weight: 600;">Favorite Pet Transport</h3><p class="text-muted" style="font-size: 0.9rem;">Your trusted pet chaperones</p></div>
+                        <div id="fav-chap-list" style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%;"></div>
+                        <div id="fav-chap-empty" class="empty-state" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;"><p>No favorite chaperones yet</p><a href="/transport" class="button button-outline button-sm">Browse Transport</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <h2>My Reviews</h2>
+            </div>
+            <div class="card">
+                <div class="card-content">
+                    <div id="reviews-placeholder" style="text-align: center; padding: 3rem 1rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 1rem;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        <p class="text-muted" style="margin-bottom: 1.5rem;">View and manage your reviews</p>
+                        <button id="btn-view-reviews" class="button teal-button">View All Reviews</button>
+                    </div>
+                    <div id="reviews-list-container" style="display: none;">
+                        <div id="reviews-list" style="display: grid; gap: 1rem;"></div>
+                        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                            <button id="btn-close-reviews" class="button button-ghost">Close View</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
-    <script src="js/nav-auth.js"></script>
-</body>
 
+    <div id="settings-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="btn-close-modal" class="modal-close">&times;</button>
+            <h2 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #00858C;">Account Settings</h2>
+            
+            <form id="settings-form">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="setting-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Email Address</label>
+                    <input type="email" id="setting-email" class="form-input" required>
+                </div>
+                <hr style="margin: 1.5rem 0; border: none; border-top: 1px solid #eee;">
+                <div class="form-group">
+                    <label class="form-label">New Password (Optional)</label>
+                    <input type="password" id="setting-password" class="form-input" placeholder="Leave blank to keep current">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" id="btn-cancel-modal" class="button button-ghost">Cancel</button>
+                    <button type="submit" class="button teal-button">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/nav-auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const token = localStorage.getItem('token');
+            const userId = localStorage.getItem('userId');
+            const userName = localStorage.getItem('userName');
+
+            if (!token || !userId) { 
+                window.location.href = '/login'; 
+                return; 
+            }
+
+            const nameDisplay = document.getElementById('user-name-display');
+            if(nameDisplay) nameDisplay.textContent = userName || 'User';
+
+            // ==========================================
+            // SETTINGS MODAL LOGIC
+            // ==========================================
+            const modal = document.getElementById('settings-modal');
+            const btnOpenSettings = document.getElementById('btn-open-settings');
+            const btnCloseModal = document.getElementById('btn-close-modal');
+            const btnCancelModal = document.getElementById('btn-cancel-modal');
+            const settingsForm = document.getElementById('settings-form');
+
+            if (btnOpenSettings) {
+                btnOpenSettings.addEventListener('click', async () => {
+                    try {
+                        const res = await fetch('/api/users/me', {
+                            headers: { 'Authorization': `Bearer ${token}` }
+                        });
+                        if (res.ok) {
+                            const user = await res.json();
+                            document.getElementById('setting-name').value = user.name;
+                            document.getElementById('setting-email').value = user.email;
+                            document.getElementById('setting-password').value = '';
+                            modal.style.display = 'flex';
+                        } else {
+                            alert('Failed to load user data');
+                        }
+                    } catch (err) { console.error(err); alert('Connection error'); }
+                });
+            }
+
+            function closeModal() { modal.style.display = 'none'; }
+            if(btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
+            if(btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
+            window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+            if(settingsForm) {
+                settingsForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const newName = document.getElementById('setting-name').value;
+                    const newEmail = document.getElementById('setting-email').value;
+                    const newPass = document.getElementById('setting-password').value;
+
+                    try {
+                        const res = await fetch('/api/users/me', {
+                            method: 'PUT',
+                            headers: { 
+                                'Content-Type': 'application/json',
+                                'Authorization': `Bearer ${token}` 
+                            },
+                            body: JSON.stringify({ name: newName, email: newEmail, password: newPass })
+                        });
+                        const data = await res.json();
+                        if (res.ok) {
+                            alert('Profile updated successfully!');
+                            localStorage.setItem('userName', newName);
+                            if(nameDisplay) nameDisplay.textContent = newName;
+                            closeModal();
+                        } else {
+                            alert(`Update failed: ${data.error}`);
+                        }
+                    } catch (err) { console.error(err); alert('An error occurred.'); }
+                });
+            }
+
+            // ==========================================
+            // FAVORITES & REVIEWS
+            // ==========================================
+            try {
+                const res = await fetch(`/api/users/${userId}/favorites`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await res.json();
+                renderFavorites(data.veterinary, 'fav-vet-list', 'fav-vet-empty', 'veterinary');
+                renderFavorites(data.chaperone, 'fav-chap-list', 'fav-chap-empty', 'transport');
+            } catch (err) { console.error("Error loading favorites:", err); }
+
+            function renderFavorites(items, listId, emptyId, typeUrl) {
+                const listEl = document.getElementById(listId);
+                const emptyEl = document.getElementById(emptyId);
+                if (!items || items.length === 0) {
+                    listEl.style.display = 'none'; emptyEl.style.display = 'flex';
+                } else {
+                    emptyEl.style.display = 'none'; listEl.style.display = 'flex';
+                    // *** แก้ไข: ตัด <img> ออกตามคำสั่ง ***
+                    listEl.innerHTML = items.map(item => `
+                        <a href="/${typeUrl}/${item.id}" style="display:flex; gap:0.75rem; padding:0.75rem; border:1px solid #e2e8f0; border-radius:8px; align-items:center; text-decoration:none; color:inherit; background:#fff; transition:0.2s;" onmouseover="this.style.borderColor='#00858C'" onmouseout="this.style.borderColor='#e2e8f0'">
+                            <div style="flex:1; min-width:0;">
+                                <h4 style="font-size:0.95rem; font-weight:600; margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${item.name}</h4>
+                                <p style="font-size:0.8rem; color:#64748b; margin:0;">${item.rating || 0} ★</p>
+                            </div>
+                        </a>
+                    `).join('');
+                }
+            }
+
+            const btnView = document.getElementById('btn-view-reviews');
+            const btnClose = document.getElementById('btn-close-reviews');
+            const placeholder = document.getElementById('reviews-placeholder');
+            const listContainer = document.getElementById('reviews-list-container');
+            const reviewsList = document.getElementById('reviews-list');
+
+            async function loadAndRenderReviews() {
+                try {
+                    const res = await fetch(`/api/users/${userId}/reviews`, { headers: { 'Authorization': `Bearer ${token}` } });
+                    if (!res.ok) throw new Error('Failed to load');
+                    const reviews = await res.json();
+                    if (reviewsList) {
+                        reviewsList.innerHTML = '';
+                        if (reviews.length === 0) {
+                            reviewsList.innerHTML = `<div style="text-align:center; padding: 2rem; border: 1px dashed #e2e8f0; border-radius: 8px;"><p class="text-muted">You haven't written any reviews yet.</p></div>`;
+                        } else {
+                            reviews.forEach(r => {
+                                const targetName = r.vet_name || r.chap_name || 'Unknown Service';
+                                const targetType = r.vet_name ? 'Veterinary Clinic' : 'Pet Transport';
+                                const targetId = r.veterinary_clinic_id || r.pet_chaperone_id;
+                                const linkUrl = r.vet_name ? `/veterinary/${targetId}` : `/transport/${targetId}`;
+                                const itemHtml = `
+                                    <div style="padding: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; background: #f8fafc;">
+                                        <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
+                                            <div>
+                                                <h4 style="font-size:1rem; font-weight:600; margin:0;"><a href="${linkUrl}" style="text-decoration:none; color:inherit; pointer-events: auto;">${targetName}</a></h4>
+                                                <span style="font-size:0.75rem; color:#64748b; background:#e2e8f0; padding:2px 6px; border-radius:4px;">${targetType}</span>
+                                            </div>
+                                            <div style="text-align: right;">
+                                                <span class="text-muted" style="display:block; font-size:0.8rem; margin-bottom: 0.25rem;">${new Date(r.date).toLocaleDateString()}</span>
+                                                <button class="btn-delete-review" data-id="${r.id}" title="Delete Review">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div style="display:flex; align-items:center; margin-bottom:0.5rem;">${generateStarSVG(r.rating)}<span style="margin-left:8px; font-weight:500; font-size:0.9rem;">${r.title || ''}</span></div>
+                                        <p class="text-muted" style="font-size:0.9rem; margin:0;">${r.comment || ''}</p>
+                                    </div>`;
+                                reviewsList.insertAdjacentHTML('beforeend', itemHtml);
+                            });
+                            document.querySelectorAll('.btn-delete-review').forEach(btn => {
+                                btn.addEventListener('click', async (e) => {
+                                    if(!confirm('Are you sure you want to delete this review?')) return;
+                                    const reviewId = e.currentTarget.dataset.id;
+                                    try {
+                                        const delRes = await fetch(`/api/reviews/${reviewId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+                                        if(delRes.ok) loadAndRenderReviews(); else alert('Failed to delete');
+                                    } catch(err) { alert('Error connecting to server'); }
+                                });
+                            });
+                        }
+                    }
+                    if (placeholder) placeholder.style.display = 'none';
+                    if (listContainer) listContainer.style.display = 'block';
+                } catch (err) { console.error(err); }
+            }
+
+            if (btnView) btnView.addEventListener('click', async () => {
+                const originalText = btnView.textContent;
+                btnView.textContent = 'Loading...';
+                await loadAndRenderReviews();
+                btnView.textContent = originalText;
+            });
+
+            if (btnClose) btnClose.addEventListener('click', () => {
+                if (listContainer) listContainer.style.display = 'none';
+                if (placeholder) placeholder.style.display = 'block';
+            });
+        });
+
+        function generateStarSVG(r) {
+            let s = '<div style="display:flex; color:#f59e0b;">';
+            for (let i = 0; i < 5; i++) {
+                s += `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="${i < r ? 'currentColor' : '#e5e5e5'}" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>`;
+            }
+            return s + '</div>';
+        }
+    </script>
+</body>
 </html>

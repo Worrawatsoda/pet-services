@@ -6,9 +6,17 @@ registerform.addEventListener('submit', async (e) => {
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value; // รับค่า Confirm Password
+
+    // ตรวจสอบว่ารหัสผ่านตรงกันหรือไม่
+    if (password !== confirmPassword) {
+        alert("Passwords do not match!");
+        return; // หยุดการทำงาน ไม่ส่งข้อมูลไป Server
+    }
 
     try {
-        const response = await fetch('http://localhost:3000/api/auth/register', {
+        // ใช้ Relative Path เพื่อความยืดหยุ่น (หรือจะใช้ http://localhost:3000 ก็ได้ถ้า run local)
+        const response = await fetch('/api/auth/register', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -26,6 +34,6 @@ registerform.addEventListener('submit', async (e) => {
         }
     } catch (error) {
         console.error('Error during registration:', error);
-        alert('An error occurred. Please try again later.');
+        alert('An error occurred. Please try again later.');    
     }
 });

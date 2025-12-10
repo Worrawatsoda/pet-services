@@ -4,18 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a Vet - PetCare Connect</title>
-
+    <title>Find a Vet - DogGoDoc</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-
     <nav class="site-header">
         <div class="container header-container">
             <a href="/" class="logo-link">
                 <div class="logo-icon-wrapper">
-                    <img class="logo-icon" src="img\DoggoDoc_LOGO.jpg" alt="Logo">
+                    <img class="logo-icon" src="img/DoggoDoc_LOGO.jpg" alt="Logo">
                 </div>
             </a>
             <div class="header-nav">
@@ -23,19 +21,21 @@
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
-            <div class="header-nav-auth">
-                <a href="/login" class="button button-ghost button-sm">Sign In</a>
-                <a href="/register" class="button button-sm">Get Started</a>
-            </div>
+            <div class="header-nav-auth"></div>
         </div>
     </nav>
     <main class="vet-main">
-
         <section class="vet-header-section">
             <div class="container">
-                <h1 class="vet-page-title">Find a Veterinary Clinic</h1>
-                <p class="vet-page-desc">Browse verified veterinary clinics in your area</p>
+                <h1 class="vet-page-title">ค้นหาคลินิกสัตวแพทย์</h1>
+                <p class="vet-page-desc">
+                    ค้นหาคลินิกสัตวแพทย์ที่ได้รับการรับรองในพื้นที่ของคุณ</p>
 
+                <div class="vet-search-bar" style="margin-top: 1.5rem; display: flex; gap: 0.5rem; max-width: 600px;">
+                    <input type="text" id="search-input" class="input" placeholder="ค้นหาชื่อคลินิก...">
+                    <button id="search-btn" class="button"
+                        style="background-color: #00858C; color: white;">Search</button>
+                </div>
 
             </div>
         </section>
@@ -51,25 +51,23 @@
                                 style="height: auto; padding: 0.25rem;">Clear</button>
                         </div>
                         <div class="card-content filter-content">
-
                             <div class="filter-group">
                                 <h4>Services</h4>
                                 <div class="checkbox-list">
-                                    <label class="checkbox-item">
-                                        <input type="checkbox"> General Care
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox"> Emergency Care
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox"> Surgery
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox"> Dental
-                                    </label>
-                                    <label class="checkbox-item">
-                                        <input type="checkbox"> Vaccinations
-                                    </label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service"
+                                            value="General Care"> General Care</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service"
+                                            value="Emergency Care"> Emergency Care</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service" value="Surgery">
+                                        Surgery</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service" value="Dental">
+                                        Dental</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service"
+                                            value="Vaccinations"> Vaccinations</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service" value="X-Ray">
+                                        X-Ray</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="service" value="Grooming">
+                                        Grooming</label>
                                 </div>
                             </div>
 
@@ -77,10 +75,10 @@
                                 <h4>Availability</h4>
                                 <div class="checkbox-list">
                                     <label class="checkbox-item">
-                                        <input type="checkbox"> 24/7 Emergency Care
+                                        <input type="checkbox" id="filter-emergency"> 24/7 Emergency Care
                                     </label>
                                     <label class="checkbox-item">
-                                        <input type="checkbox"> Accepts Walk-ins
+                                        <input type="checkbox" id="filter-walkin"> Accepts Walk-ins
                                     </label>
                                 </div>
                             </div>
@@ -88,32 +86,26 @@
                             <div class="filter-group">
                                 <div class="range-header">
                                     <h4>Minimum Rating</h4>
-                                    <span>Any</span>
+                                    <span id="rating-val-display">Any</span>
                                 </div>
-                                <input type="range" min="0" max="5" step="0.5" class="range-input">
+                                <input type="range" min="0" max="5" step="0.5" class="range-input" id="filter-rating"
+                                    value="0"
+                                    oninput="document.getElementById('rating-val-display').innerText = this.value > 0 ? this.value + '+' : 'Any'">
                                 <div class="range-labels">
                                     <span>0</span>
                                     <span>5</span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </aside>
 
-                    <div class="vet-results">
-                        <div class="results-header">
-                            <p class="text-muted" id="result-count">Loading...</p>
-                        </div>
-
-                        <div id="vet-card-container" class="vet-card-grid">
-                        </div>
-
-                        <div id="pagination-controls"
-                            style="display: flex; justify-content: center; gap: 10px; margin-top: 2rem;">
-                        </div>
+                <div class="vet-results">
+                    <div class="results-header">
+                        <p class="text-muted" id="result-count">Loading...</p>
                     </div>
-
+                    <div id="vet-card-container" class="vet-card-grid"></div>
+                </div>
             </div>
         </section>
     </main>

@@ -1883,3 +1883,310 @@ body {
     align-items: center;
 }
 .font-medium { font-weight: 500; }
+footer {
+    background-color: #1e293b; /* Slate-800 */
+    color: #f1f5f9;            /* Slate-100 */
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+    font-size: 0.95rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+    .footer-content {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+}
+
+.footer-column h4 {
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    letter-spacing: 0.025em;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-column h4::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #00858C; /* Teal */
+    margin-top: 8px;
+    border-radius: 2px;
+}
+
+.footer-column p {
+    color: #94a3b8; /* Slate-400 */
+    line-height: 1.6;
+    max-width: 24rem;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-column ul li a {
+    color: #cbd5e1; /* Slate-300 */
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-column ul li a:hover {
+    color: #00858C;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #334155;
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #64748b;
+    font-size: 0.875rem;
+    margin: 0;
+}
+/* =========================================
+   User Dropdown Styles (Navbar)
+   ========================================= */
+.user-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--foreground);
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    transition: background-color 0.2s;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--muted);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none; /* ซ่อนไว้ก่อน */
+    flex-direction: column;
+    z-index: 1000;
+    overflow: hidden;
+    margin-top: 0.5rem;
+}
+
+.dropdown-menu.show {
+    display: flex; /* แสดงเมื่อมี class show */
+}
+
+.dropdown-item {
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--foreground);
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+}
+
+.dropdown-item:hover {
+    background-color: var(--muted);
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: var(--border);
+    margin: 0;
+}
+
+/* สีแดงสำหรับปุ่ม Logout */
+.dropdown-item.text-danger {
+    color: var(--destructive);
+}
+
+.dropdown-item.text-danger:hover {
+    background-color: #fee2e2;
+}
+/* =========================================
+   Card Favorite Button Styles (New)
+   ========================================= */
+.card-fav-btn {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem; /* วางมุมซ้ายบน ตามรูปตัวอย่าง */
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.card-fav-btn:hover {
+    transform: scale(1.1);
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.card-fav-btn svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #94a3b8; /* สีเทาตอนยังไม่กด */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    transition: all 0.2s ease;
+}
+
+/* สถานะ Active (กดแล้ว) */
+.card-fav-btn.active svg {
+    color: #ef4444; /* สีแดง */
+    fill: #ef4444;
+    stroke: none;
+}
+/* =========================================
+   Card Image Improvements
+   ========================================= */
+
+/* ปรับปรุง Container ของรูปภาพ */
+.vet-card-image, 
+.chap-card-image {
+    position: relative;
+    height: 240px; /* กำหนดความสูงคงที่ ให้เท่ากันทุกการ์ด */
+    width: 100%;
+    background-color: #f1f5f9; /* สีพื้นหลังเทาอ่อน (กรณีรูปโหลดไม่ทัน) */
+    overflow: hidden; /* ซ่อนส่วนที่ล้นออก */
+    border-bottom: 1px solid var(--border); /* เส้นขอบบางๆ ด้านล่างรูป */
+}
+
+/* ปรับปรุงตัวรูปภาพ */
+.vet-card-image img, 
+.chap-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* สำคัญ: ขยายรูปให้เต็มพื้นที่โดยไม่เสียสัดส่วน (ตัดส่วนเกินออก) */
+    object-position: center; /* จัดรูปให้อยู่กึ่งกลางเสมอ */
+    display: block;
+    transition: transform 0.5s ease; /* เพิ่ม Effect ให้ขยับนุ่มนวล */
+}
+
+/* Effect: เมื่อเอาเมาส์ชี้ที่การ์ด ให้รูปซูมเข้าเล็กน้อย */
+.vet-card:hover .vet-card-image img,
+.chap-card:hover .chap-card-image img {
+    transform: scale(1.1);
+}
+
+/* ปรับ Placeholder กรณีไม่มีรูป */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e2e8f0;
+    color: #94a3b8;
+}
+/* =========================================
+   Detail Page Hero Image Improvements
+   ========================================= */
+
+.vet-hero-image,
+.chap-hero-image {
+    position: relative;
+    height: 400px; /* กำหนดความสูงคงที่ (ปรับได้ตามต้องการ) */
+    width: 100%;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    background-color: #f1f5f9; /* พื้นหลังสีเทา */
+    display: flex;             /* จัดกึ่งกลางสำหรับ Placeholder */
+    align-items: center;
+    justify-content: center;
+}
+
+/* จัดการรูปภาพให้เต็มกรอบและรักษาสัดส่วน */
+.vet-hero-image img,
+.chap-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* ขยายรูปให้เต็มพื้นที่โดยตัดส่วนเกินออก */
+    object-position: center; /* จัดให้อยู่กึ่งกลาง */
+    display: block;
+}
+
+/* ปรับ Placeholder ให้ดูดีขึ้น */
+.vet-hero-image .image-placeholder,
+.chap-hero-image .image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+}
+/* =========================================
+   Detail Page Hero Image FIX (เพิ่มส่วนนี้)
+   ========================================= */
+
+/* กำหนดให้รูปภาพภายในกรอบ Hero Image ขยายเต็มพื้นที่เสมอ */
+.vet-hero-image img,
+.chap-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;       /* สำคัญ: ขยายรูปให้เต็มกรอบโดยตัดส่วนเกินออก ไม่บีบรูป */
+    object-position: center;  /* จัดรูปให้อยู่กึ่งกลาง */
+    display: block;
+}
+
+/* ปรับ Placeholder กรณีไม่มีรูป */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e2e8f0; /* สีเทาอ่อน */
+    color: #94a3b8;
+}

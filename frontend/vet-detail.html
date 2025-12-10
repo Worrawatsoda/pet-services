@@ -1,136 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paws & Claws Animal Hospital - PetCare Connect</title>
-
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Veterinary Details - DogGoDoc</title>
+    <link rel="stylesheet" href="/css/style.css"> 
 </head>
-
 <body>
-
     <nav class="site-header">
         <div class="container header-container">
-            <a href="/" class="logo-link">
-                <div class="logo-icon-wrapper">
-                    <img class="logo-icon" src="img\DoggoDoc_LOGO.jpg" alt="Logo">
-                </div>
-            </a>
+            <a href="/" class="logo-link"><div class="logo-icon-wrapper"><img class="logo-icon" src="/img/DoggoDoc_LOGO.jpg" alt="Logo"></div></a>
             <div class="header-nav">
                 <a href="/veterinary" class="nav-link">Find a Vet</a>
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
-            <div class="header-nav-auth">
-                <a href="/login" class="button button-ghost button-sm">Sign In</a>
-                <a href="/register" class="button button-sm">Get Started</a>
-            </div>
+            <div class="header-nav-auth"></div>
         </div>
     </nav>
 
     <main class="vet-detail-main">
         <div class="container">
-
-            <a href="veterinary.html" class="button button-ghost back-link">
-                ← Back to Directory
-            </a>
-
-            <div class="vet-hero-image">
-                <div class="image-placeholder" style="background-color: #e5e5e5;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        style="color: #a3a3a3;">
-                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
-                        <circle cx="9" cy="9" r="2" />
-                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
-                    </svg>
-                </div>
+            <a href="/veterinary" class="button button-ghost back-link">← กลับ</a>
+            
+            <div class="vet-hero-image" id="vet-hero-image">
+                <div class="image-placeholder" style="background-color: #e5e5e5;"></div>
             </div>
 
             <div class="vet-detail-grid">
-
                 <div class="vet-info-col">
-
                     <div class="vet-header-info">
-                        <h1 class="vet-title">Paws & Claws Animal Hospital</h1>
+                        <div style="display:flex; justify-content:space-between; align-items:start;">
+                            <h1 class="vet-title" id="vet-name">Loading...</h1>
+                            <button id="btn-favorite" class="button button-ghost" style="padding: 0.5rem; color: #ccc;" title="Add to Favorites">
+                                <svg id="icon-heart" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                            </button>
+                        </div>
                         <div class="vet-meta">
                             <div class="rating-box">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="star-icon">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg>
-                                <span class="rating-val">4.8</span>
-                                <span class="review-count">(234 reviews)</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="star-icon"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
+                                <span class="rating-val" id="vet-rating">0.0</span>
+                                <span class="review-count" id="vet-reviews-count">(0 reviews)</span>
                             </div>
-                            <div class="location-box">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                    <circle cx="12" cy="10" r="3" />
-                                </svg>
-                                <span>1.2 miles away</span>
-                            </div>
+                            <div class="location-box"><span id="vet-address">Loading...</span></div>
                         </div>
-                        <p class="vet-desc">
-                            Full-service veterinary hospital providing comprehensive care for dogs, cats, and exotic
-                            pets. Our experienced team is dedicated to your pet's health and wellbeing.
-                        </p>
+                        <p class="vet-desc" id="vet-desc"></p>
                     </div>
 
                     <div class="card detail-card">
                         <div class="card-content">
-                            <h2 class="card-heading">Services Offered</h2>
-                            <div class="tags-container">
-                                <span class="badge badge-secondary">General Care</span>
-                                <span class="badge badge-secondary">Surgery</span>
-                                <span class="badge badge-secondary">Dental</span>
-                                <span class="badge badge-secondary">Emergency Care</span>
-                                <span class="badge badge-secondary">Vaccinations</span>
-                                <span class="badge badge-secondary">X-Ray</span>
-                            </div>
+                            <h2 class="card-heading">บริการที่นำเสนอ</h2>
+                            <div class="tags-container" id="vet-tags-container"></div>
                         </div>
                     </div>
 
                     <div class="card detail-card">
                         <div class="card-content">
-                            <h2 class="card-heading">Hours of Operation</h2>
-                            <div class="hours-list">
-                                <div class="hours-row"><span>Monday</span><span class="text-muted">8:00 AM - 6:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Tuesday</span><span class="text-muted">8:00 AM - 6:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Wednesday</span><span class="text-muted">8:00 AM - 6:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Thursday</span><span class="text-muted">8:00 AM - 6:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Friday</span><span class="text-muted">8:00 AM - 6:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Saturday</span><span class="text-muted">9:00 AM - 4:00
-                                        PM</span></div>
-                                <div class="hours-row"><span>Sunday</span><span class="text-muted">Closed</span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card detail-card">
-                        <div class="card-content">
-                            <h2 class="card-heading">Features</h2>
-                            <div class="features-list">
-                                <div class="feature-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="text-primary">
-                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                                        <polyline points="22 4 12 14.01 9 11.01" />
-                                    </svg>
-                                    <span>Accepts walk-in appointments</span>
-                                </div>
-                            </div>
+                            <h2 class="card-heading">เวลาที่เปิดให้บริการ</h2>
+                            <div class="hours-list" id="vet-hours-container"></div>
                         </div>
                     </div>
 
@@ -139,205 +66,74 @@
                             <div>
                                 <h2 class="card-heading">Reviews</h2>
                                 <div class="rating-box large">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="currentColor" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round" class="star-icon">
-                                        <polygon
-                                            points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                    </svg>
-                                    <span class="rating-val">4.8</span>
-                                    <span class="review-count">Based on 234 reviews</span>
+                                    <span class="rating-val" id="vet-rating-large">0.0</span>
+                                    <span class="review-count" id="vet-reviews-count-large">Based on 0 reviews</span>
                                 </div>
                             </div>
-                            <button class="button">Write a Review</button>
+                            <button id="btn-open-review" class="button button-outline button-sm">Write a Review</button>
                         </div>
 
-                        <div class="reviews-list">
-                            <div class="card review-card">
-                                <div class="card-content">
-                                    <div class="review-meta">
-                                        <span class="reviewer-name">Sarah M.</span>
-                                        <span class="dot">•</span>
-                                        <span class="review-date">January 15, 2025</span>
+                        <div id="review-form-container" class="card" style="display: none; margin-bottom: 1.5rem; background: #f9fafb;">
+                            <div class="card-content">
+                                <h4 class="card-heading" style="margin-bottom: 1rem;">Write a Review</h4>
+                                <form id="review-form">
+                                    <div style="margin-bottom: 1rem;">
+                                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem;">Rating</label>
+                                        <select id="input-rating" class="filter-select" style="width: 100%; padding: 0.5rem;" required>
+                                            <option value="" disabled selected>Select Rating</option>
+                                            <option value="5">5 - Excellent</option>
+                                            <option value="4">4 - Good</option>
+                                            <option value="3">3 - Average</option>
+                                            <option value="2">2 - Poor</option>
+                                            <option value="1">1 - Terrible</option>
+                                        </select>
                                     </div>
-                                    <div class="review-rating">
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
+                                    <div style="margin-bottom: 1rem;">
+                                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem;">Title</label>
+                                        <input type="text" id="input-title" class="search-input" style="width: 100%;" placeholder="Summary" required>
                                     </div>
-                                    <h4 class="review-title">Excellent care for my dog</h4>
-                                    <p class="review-body">The staff at Paws & Claws are amazing! They took great care
-                                        of my dog during his surgery and the follow-up care was exceptional. Highly
-                                        recommend!</p>
-                                    <div class="review-actions">
-                                        <button class="button button-ghost button-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M7 10v12" />
-                                                <path
-                                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
-                                            </svg>
-                                            Helpful (12)
-                                        </button>
+                                    <div style="margin-bottom: 1rem;">
+                                        <label style="display:block; margin-bottom:0.5rem; font-size:0.9rem;">Review</label>
+                                        <textarea id="input-comment" class="search-input" style="width: 100%; height: 100px;" placeholder="Details..." required></textarea>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="card review-card">
-                                <div class="card-content">
-                                    <div class="review-meta">
-                                        <span class="reviewer-name">Michael T.</span>
-                                        <span class="dot">•</span>
-                                        <span class="review-date">January 10, 2025</span>
+                                    <div style="display: flex; gap: 0.5rem;">
+                                        <button type="submit" class="button">Submit</button>
+                                        <button type="button" id="btn-cancel-review" class="button button-ghost">Cancel</button>
                                     </div>
-                                    <div class="review-rating">
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                        <svg class="star-icon small" ...>
-                                            <polygon points="..." />
-                                        </svg>
-                                    </div>
-                                    <h4 class="review-title">Very professional</h4>
-                                    <p class="review-body">Dr. Johnson was very thorough and explained everything
-                                        clearly. The facility is clean and modern. Will definitely be coming back.</p>
-                                    <div class="review-actions">
-                                        <button class="button button-ghost button-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round">
-                                                <path d="M7 10v12" />
-                                                <path
-                                                    d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z" />
-                                            </svg>
-                                            Helpful (8)
-                                        </button>
-                                    </div>
-                                </div>
+                                </form>
                             </div>
                         </div>
+
+                        <div class="reviews-list" id="reviews-list"><p class="text-muted">Loading reviews...</p></div>
                     </div>
-
                 </div>
 
                 <aside class="vet-sidebar-col">
-
                     <div class="card detail-card sticky-card">
                         <div class="card-content">
-                            <h3 class="card-heading">Contact Information</h3>
+                            <h3 class="card-heading">ข้อมูลการติดต่อ</h3>
                             <div class="contact-list">
-                                <div class="contact-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="text-muted">
-                                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                                        <circle cx="12" cy="10" r="3" />
-                                    </svg>
-                                    <div>
-                                        <p class="contact-label">Address</p>
-                                        <p class="contact-val text-muted">123 Main Street<br>San Francisco, CA 94102</p>
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="text-muted">
-                                        <path
-                                            d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                    </svg>
-                                    <div>
-                                        <p class="contact-label">Phone</p>
-                                        <a href="tel:(415) 555-0123" class="contact-link">(415) 555-0123</a>
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="text-muted">
-                                        <rect width="20" height="16" x="2" y="4" rx="2" />
-                                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-                                    </svg>
-                                    <div>
-                                        <p class="contact-label">Email</p>
-                                        <a href="mailto:info@pawsandclaws.com"
-                                            class="contact-link">info@pawsandclaws.com</a>
-                                    </div>
-                                </div>
-                                <div class="contact-item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" class="text-muted">
-                                        <circle cx="12" cy="12" r="10" />
-                                        <line x1="2" y1="12" x2="22" y2="12" />
-                                        <path
-                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                                    </svg>
-                                    <div>
-                                        <p class="contact-label">Website</p>
-                                        <a href="#" class="contact-link">Visit Website</a>
-                                    </div>
-                                </div>
+                                <div class="contact-item"><div><p class="contact-label">Address</p><p class="contact-val text-muted" id="vet-sidebar-address">-</p></div></div>
+                                <div class="contact-item"><div><p class="contact-label">Phone</p><a href="#" class="contact-link" id="vet-phone">-</a></div></div>
+                                <div class="contact-item"><div><p class="contact-label">Email</p><a href="#" class="contact-link" id="vet-email">-</a></div></div>
+                                <div class="contact-item"><div><p class="contact-label">Website</p><a href="#" class="contact-link" id="vet-website">-</a></div></div>
                             </div>
-                            <button class="button button-full-width button-lg mt-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path
-                                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                                </svg>
-                                Call Now
-                            </button>
                         </div>
                     </div>
-
                     <div class="card detail-card">
                         <div class="card-content">
                             <h3 class="card-heading">Quick Info</h3>
                             <div class="quick-info-list">
-                                <div class="quick-row">
-                                    <span class="text-muted">Emergency Care</span>
-                                    <span class="font-medium">Not Available</span>
-                                </div>
-                                <div class="quick-row">
-                                    <span class="text-muted">Walk-ins</span>
-                                    <span class="font-medium">Accepted</span>
-                                </div>
-                                <div class="quick-row">
-                                    <span class="text-muted">Services</span>
-                                    <span class="font-medium">6 offered</span>
-                                </div>
+                                <div class="quick-row"><span class="text-muted">Emergency Care</span><span class="font-medium" id="vet-emergency">-</span></div>
+                                <div class="quick-row"><span class="text-muted">Walk-ins</span><span class="font-medium" id="vet-walkin">-</span></div>
                             </div>
                         </div>
                     </div>
-
                 </aside>
-
             </div>
         </div>
     </main>
-    <script src="js/nav-auth.js"></script>
+    <script src="/js/nav-auth.js"></script>
+    <script src="/js/vet-detail.js"></script>
 </body>
-
 </html>

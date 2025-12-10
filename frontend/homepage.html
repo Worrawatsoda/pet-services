@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DogGoDoc</title>
     <link rel="stylesheet" href="./css/style.css">
-
+    <style>
+        a.button {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 
 <body>
@@ -14,7 +21,7 @@
         <div class="container header-container">
             <a href="/" class="logo-link">
                 <div class="logo-icon-wrapper">
-                    <img class="logo-icon" src="img\DoggoDoc_LOGO.jpg" alt="Logo">
+                    <img class="logo-icon" src="img/DoggoDoc_LOGO.jpg" alt="Logo">
                 </div>
             </a>
             <div class="header-nav">
@@ -28,7 +35,7 @@
             </div>
         </div>
     </nav>
-    <!-- Hero Section -->
+
     <section class="hero">
         <div class="container">
             <h1>การดูแลสัตว์เลี้ยงของคุณ อย่างมีคุณภาพ <br>
@@ -41,53 +48,63 @@
             </p>
         </div>
     </section>
-    <!-- Card Section --><!-- ค้นหาโรงพยาบาลสัตว์ -->
+
     <section class="card-section">
         <div class="container">
             <div class="cards-wrapper">
+                
                 <div class="card-homepage">
-                    <div class="card-icon"><img src="img\dog_plus_icon.png" alt="Logo" width="56" height="56"></div>
+                    <div class="card-icon">
+                        <img src="img/dog_plus_icon.png" alt="Vet Icon" width="56" height="56">
+                    </div>
                     <h3>ค้นหาโรงพยาบาลสัตว์</h3>
                     <p>
                         ค้นหาและเปรียบเทียบคลินิกสัตวแพทย์ที่ผ่านการยืนยัน
                         อ่านรีวิวจริงจากเจ้าของสัตว์เลี้ยงคนอื่น ๆ
                     </p>
-                    <button class="button">ค้นหาโรงพยาบาลสัตว์</button>
+                    <a href="/veterinary" class="button btn-card">ค้นหาโรงพยาบาลสัตว์</a>
                 </div>
-                <!-- ค้นหาผุ้ให้บริการขนส่งสัตว์เลี้ยง -->
+
                 <div class="card-homepage">
-                    <div class="card-icon"><img src="img\hospital_car_icon.png" alt="Logo" width="56" height="56">
+                    <div class="card-icon">
+                        <img src="img/hospital_car_icon.png" alt="Transport Icon" width="56" height="56">
                     </div>
                     <h3>ค้นหาผู้ให้บริการสัตว์เลี้ยง</h3>
                     <p>
                         ค้นหาบริการรับ-ส่งสัตว์เลี้ยงที่ปลอดภัยและเชื่อถือได้
                         เพื่อให้เพื่อนตัวน้อยของคุณได้รับการดูแลอย่างดีที่สุดและสบายใจ
                     </p>
-                    <button class="button">ค้นหาผู้ให้บริการสัตว์เลี้ยง</button>
+                    <a href="/transport" class="button btn-card">ค้นหาผู้ให้บริการสัตว์เลี้ยง</a>
                 </div>
 
-                <!-- ส่วนที่ 4: WHY SECTION (ทำไมถึงเลือก) -->
-                <section class="why-section">
-                    <div class="container">
-                        <h2>ทำไมควรเลือก DogGoDoc?</h2>
-                        <p class="why-description">
-                            เราช่วยให้คุณพบการดูแลสัตว์เลี้ยงที่มีคุณภาพได้อย่างง่ายดาย
-                            และมั่นใจได้ทุกครั้งที่คุณใช้บริการ
-                        </p>
-                    </div>
+            </div>
 
+            <section class="why-section">
+                <div class="container">
+                    <h2>ทำไมควรเลือก DogGoDoc?</h2>
+                    <p class="why-description">
+                        เราช่วยให้คุณพบการดูแลสัตว์เลี้ยงที่มีคุณภาพได้อย่างง่ายดาย
+                        และมั่นใจได้ทุกครั้งที่คุณใช้บริการ
+                    </p>
+                </div>
+
+                <div class="features-container" style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:2rem;">
                     <div class="feature">
-                        <div class="feature-icon"> iconprotected </div>
-                        <h4>ผู้ดูแลสัตว์เลี้ยงที่ผ่านการตรวจสอบและไว้วางใจได้</h4>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        </div>
+                        <h4>ผู้ดูแลที่ผ่านการตรวจสอบ</h4>
                         <p>
-                            เรารับรองเฉพระะผู้ให้บริการที่ผ่านการตรวจสอบอย่างรอบด้าน
+                            เรารับรองเฉพาะผู้ให้บริการที่ผ่านการตรวจสอบอย่างรอบด้าน
                             ทั้งประสบการณ์ ความปลอดภัย และรีวิวจากลูกค้า
                         </p>
                     </div>
 
                     <div class="feature">
-                        <div class="feature-icon"> iconstar </div>
-                        <h4>ทุกความคิดเห็นมาจากเจ้าของสัตว์เลี้ยงจริง</h4>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        </div>
+                        <h4>รีวิวจริงจากผู้ใช้งาน</h4>
                         <p>
                             ฟังเสียงจากเจ้าของสัตว์เลี้ยงคนอื่น ๆ
                             ที่เคยใช้บริการ เพื่อช่วยให้คุณตัดสินใจได้อย่างมั่นใจ
@@ -95,68 +112,65 @@
                     </div>
 
                     <div class="feature">
-                        <div class="feature-icon"> icontime </div>
-                        <h4>เข้าถึงบริการได้ตลอดเวลา 24 ชั่วโมง</h4>
+                        <div class="feature-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                        <h4>บริการ 24 ชั่วโมง</h4>
                         <p>
-                            เราเข้าใจว่าสัตว์เลี้ยงของคุณคือสมาชิกในครอบครัว
-                            ทีมงานของเราทุ่มเทเพื่อให้บริการที่อบอุ่นและใส่ใจในทุกขั้นตอน
+                            เราเข้าใจว่าเหตุฉุกเฉินเกิดขึ้นได้เสมอ
+                            ค้นหาคลินิกที่เปิดให้บริการตลอด 24 ชั่วโมงได้ทันที
                         </p>
                     </div>
-                </section>
-            </div>
+                </div>
+            </section>
+        </div>
     </section>
-    <!-- CTA Section -->
+
     <section class="cta-section">
         <div class="container">
-            <div class="cta-box">
-                <div class="cta-icon">
-                    icon
+            <div class="cta-box" style="text-align:center; padding:3rem; background-color:rgb(239, 248, 248); border-radius:12px; margin-bottom:3rem;">
+                <div class="cta-icon" style="margin-bottom:1rem; color:#00858C;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 </div>
-                <h2>คุณเป็นผู้ให้บริการด้านสัตว์เลี้ยงใช่ไหม</h2>
-                <p>
-                    มาเป็นส่วนหนึ่งของเครือข่ายคลินิกสัตวแพทย์และบริการขนส่งสัตว์เลี้ยงที่น่าเชื่อถือ
-                    และเข้าถึงเจ้าของสัตว์เลี้ยงในพื้นที่ของคุณ
+                <h2 style="font-size:1.8rem; font-weight:bold; margin-bottom:1rem;">คุณเป็นผู้ใช้บริการใช่ไหม?</h2>
+                <p style="margin-bottom:1.5rem; color:#64748b; max-width:600px; margin-left:auto; margin-right:auto;">
+                    มาเป็นส่วนหนึ่งของโครงการ คลินิกสัตวแพทย์และบริการขนส่งสัตว์เลี้ยงที่น่าเชื่อถือ
+                    และเข้าถึงความปลอดภัยของสัตว์เลี้ยงในบ้านของคุณ
                 </p>
-                <button class="button">เพิ่มบริการของคุณ</button>
+                <a href="/register" class="button">สมัครสมาชิกเพื่อเพิ่มบริการ</a>
             </div>
         </div>
     </section>
 
-    <!--footer-->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <!-- คอลัมน์ที่ 1: PetCare Connect -->
                 <div class="footer-column">
                     <h4>DogGoDoc</h4>
                     <p>การดูแลสัตว์เลี้ยงของคุณ อย่างมีคุณภาพ ตรงเวลาที่คุณต้องการที่สุด</p>
                 </div>
-                <!-- คอลัมน์ที่ 2: Services -->
                 <div class="footer-column">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="#">Find a Vet</a></li>
-                        <li><a href="#">Pet Transport</a></li>
-                        <li><a href="#">Emergency Care</a></li>
+                        <li><a href="/veterinary">Find a Vet</a></li>
+                        <li><a href="/transport">Pet Transport</a></li>
                     </ul>
                 </div>
 
-                <!-- คอลัมน์ที่ 3: company -->
                 <div class="footer-column">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
+                        <li><a href="/about">About Us</a></li>
                     </ul>
                 </div>
-
             </div>
 
-            <!-- copy right -->
             <div class="footer-bottom">
-                <p>© 2025 PetCare Connect. All rights reserved.</p>
+                <p>© 2025 DoggoDoc. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
     <script src="js/nav-auth.js"></script>
 </body>
 

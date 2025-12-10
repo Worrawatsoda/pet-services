@@ -7,7 +7,8 @@ loginForm.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     
     try {
-        const response = await fetch('http://localhost:3000/api/auth/login', {
+        // ใช้ Relative Path เพื่อให้ยืดหยุ่นกับ Environment
+        const response = await fetch('/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,10 +20,13 @@ loginForm.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             alert('Login successful!');
-            // Store the token in localStorage or a cookie
+            // Store token AND user info in localStorage
             localStorage.setItem('token', data.token);
-            // Redirect to dashboard or home page
-            window.location.href = 'homepage.html';
+            localStorage.setItem('userId', data.userId);     // *สำคัญ* สำหรับหน้า Profile
+            localStorage.setItem('userName', data.userName); // *สำคัญ* สำหรับแสดงชื่อ
+
+            // Redirect to homepage
+            window.location.href = '/';
         } else {
             alert(`Login failed: ${data.error || data.message}`);
         }
