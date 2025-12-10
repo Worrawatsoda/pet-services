@@ -395,6 +395,7 @@ body {
     gap: 30px;
     justify-content: center;
     flex-wrap: wrap;
+    margin-bottom: 80px;
 }
 
 .card-homepage {
@@ -452,9 +453,16 @@ body {
 
 .why-section {
     padding: 80px 0;
-    background: #E4F6F6;
+    background: #EFF8F8;
     text-align: center;
-    width: 100%;
+    margin-bottom: 50px;
+
+    width: 100vw; 
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 .why-section h2 {
     font-size: 36px;
@@ -484,20 +492,6 @@ body {
     max-width: 350px;
     text-align: center;
 }
-/* .feature {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 50px;
-} */
-
-/* .feature {
-    padding: 10px;
-    width: 100%;
-    max-width: 350px;
-    text-align: center;
-} */
 
 .feature-icon {
     font-size: 24px;
@@ -926,7 +920,7 @@ body {
 
 /* Header Section */
 .chap-header-section {
-    background-color: oklch(from var(--accent) l c h / 0.05); /* สีพื้นหลังต่างจาก Vet นิดหน่อย */
+    background-color: oklch(from var(--primary) l c h / 0.05);  /* สีพื้นหลังต่างจาก Vet นิดหน่อย */
     padding-top: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--border);
