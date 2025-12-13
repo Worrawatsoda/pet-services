@@ -2760,3 +2760,48 @@ footer {
         transform: translateY(1px);
     }
 }
+/* =========================================
+   [UPDATE] Fix Navbar Overlapping ("Nav โดนกิน")
+   ========================================= */
+
+/* ซ่อนเมนู Auth ของ Desktop เมื่ออยู่บนมือถือ */
+@media (max-width: 768px) {
+    .header-nav-auth {
+        display: none !important; /* ซ่อนปุ่มเดิมขวาสุด เพื่อไม่ให้เบียดโลโก้ */
+    }
+
+    /* จัด Style ให้ปุ่มในเมนูสไลด์ */
+    .mobile-nav-divider {
+        width: 100%;
+        height: 1px;
+        background-color: #f1f5f9;
+        margin: 1rem 0;
+        display: block;
+    }
+
+    .mobile-auth-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+    }
+
+    .mobile-auth-links .nav-link {
+        width: 100%;
+        padding: 0.75rem 0;
+        font-weight: 600;
+    }
+
+    /* ปุ่ม Get Started ในมือถือให้ดูเด่นหน่อย */
+    .mobile-auth-links .highlight {
+        color: var(--primary);
+    }
+}
+
+/* บน Desktop ต้องซ่อนส่วนของ Mobile ทิ้งไป */
+@media (min-width: 769px) {
+    .mobile-nav-divider, 
+    .mobile-auth-links {
+        display: none;
+    }
+}

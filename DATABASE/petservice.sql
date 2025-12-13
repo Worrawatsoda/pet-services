@@ -1,4 +1,167 @@
+-- สร้าง Database
+CREATE DATABASE IF NOT EXISTS petcare_connect;
 USE petcare_connect;
+
+-- 1. ตารางผู้ใช้งาน (Users)
+CREATE TABLE users (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    user_type ENUM('pet-owner', 'admin') DEFAULT 'pet-owner',
+    phone VARCHAR(50),
+    address VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    zip_code VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 2. ตารางสัตว์เลี้ยง (Pets)
+CREATE TABLE pets (
+    id VARCHAR(36) PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    breed VARCHAR(255),
+    age INT,
+    photo_url TEXT,
+    allergies TEXT,
+    conditions TEXT,
+    medications TEXT,
+    vaccinations TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- 3. ตารางคลินิกสัตวแพทย์ (Veterinary Clinics)
+-- ตัด columns services และ hours ที่เป็น JSON ออก
+CREATE TABLE veterinary_clinics (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description TEXT,
+    address VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    zip_code VARCHAR(20),
+    phone VARCHAR(50),
+    email VARCHAR(255),
+    website VARCHAR(255),
+    image_url TEXT,
+    rating DECIMAL(2, 1) DEFAULT 0.0,
+    review_count INT DEFAULT 0,
+    emergency_24_7 BOOLEAN DEFAULT FALSE,
+    accepts_walk_ins BOOLEAN DEFAULT FALSE,
+    latitude DECIMAL(10, 8),
+    longitude DECIMAL(11, 8),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 3.1 ตารางบริการของคลินิก (Veterinary Services) - แยกออกมาจาก JSON
+CREATE TABLE veterinary_services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clinic_id VARCHAR(36) NOT NULL,
+    service_name VARCHAR(100) NOT NULL, -- เช่น "Surgery", "Dental"
+    FOREIGN KEY (clinic_id) REFERENCES veterinary_clinics(id) ON DELETE CASCADE
+);
+
+-- 3.2 ตารางเวลาทำการ (Veterinary Hours) - แยกออกมาจาก JSON
+CREATE TABLE veterinary_hours (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    clinic_id VARCHAR(36) NOT NULL,
+    day_of_week ENUM('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday') NOT NULL,
+    open_time VARCHAR(50), -- เก็บ text เช่น "8:00 AM - 6:00 PM" หรือ "Closed"
+    FOREIGN KEY (clinic_id) REFERENCES veterinary_clinics(id) ON DELETE CASCADE,
+    UNIQUE(clinic_id, day_of_week) -- ป้องกันข้อมูลวันซ้ำในคลินิกเดียวกัน
+);
+
+-- 4. ตารางบริการรถรับส่ง (Pet Chaperones)
+-- ตัด columns services, vehicle_types, pet_types ที่เป็น JSON ออก
+CREATE TABLE pet_chaperones (
+    id VARCHAR(36) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    business_name VARCHAR(255),
+    description TEXT,
+    address VARCHAR(255),
+    city VARCHAR(100),
+    state VARCHAR(100),
+    zip_code VARCHAR(20),
+    phone VARCHAR(50),
+    email VARCHAR(255),
+    image_url TEXT,
+    rating DECIMAL(2, 1) DEFAULT 0.0,
+    review_count INT DEFAULT 0,
+    years_experience INT DEFAULT 0,
+    licensed BOOLEAN DEFAULT FALSE,
+    insured BOOLEAN DEFAULT FALSE,
+    availability VARCHAR(255),
+    price_range VARCHAR(50),
+    latitude DECIMAL(10, 8),
+    longitude DECIMAL(11, 8),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- 4.1 บริการของรถรับส่ง (Chaperone Services)
+CREATE TABLE chaperone_services (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chaperone_id VARCHAR(36) NOT NULL,
+    service_name VARCHAR(100) NOT NULL, -- เช่น "Airport Transport"
+    FOREIGN KEY (chaperone_id) REFERENCES pet_chaperones(id) ON DELETE CASCADE
+);
+
+-- 4.2 ประเภทรถ (Chaperone Vehicle Types)
+CREATE TABLE chaperone_vehicle_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chaperone_id VARCHAR(36) NOT NULL,
+    vehicle_type VARCHAR(100) NOT NULL, -- เช่น "Sedan", "SUV"
+    FOREIGN KEY (chaperone_id) REFERENCES pet_chaperones(id) ON DELETE CASCADE
+);
+
+-- 4.3 ประเภทสัตว์ที่รับ (Chaperone Pet Types)
+CREATE TABLE chaperone_pet_types (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    chaperone_id VARCHAR(36) NOT NULL,
+    pet_type VARCHAR(100) NOT NULL, -- เช่น "Dogs", "Cats"
+    FOREIGN KEY (chaperone_id) REFERENCES pet_chaperones(id) ON DELETE CASCADE
+);
+
+-- 5. ตารางรีวิว (Reviews)
+CREATE TABLE reviews (
+    id VARCHAR(36) PRIMARY KEY,
+    user_id VARCHAR(36) NOT NULL,
+    rating INT NOT NULL CHECK (rating >= 1 AND rating <= 5),
+    title VARCHAR(255),
+    comment TEXT,
+    helpful_count INT DEFAULT 0,
+    date DATE DEFAULT (CURRENT_DATE),
+    veterinary_clinic_id VARCHAR(36),
+    pet_chaperone_id VARCHAR(36),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (veterinary_clinic_id) REFERENCES veterinary_clinics(id) ON DELETE CASCADE,
+    FOREIGN KEY (pet_chaperone_id) REFERENCES pet_chaperones(id) ON DELETE CASCADE
+);
+
+-- 6. & 7. ตารางรายการโปรด (Favorites)
+CREATE TABLE user_favorite_clinics (
+    user_id VARCHAR(36) NOT NULL,
+    clinic_id VARCHAR(36) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, clinic_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (clinic_id) REFERENCES veterinary_clinics(id) ON DELETE CASCADE
+);
+
+CREATE TABLE user_favorite_chaperones (
+    user_id VARCHAR(36) NOT NULL,
+    chaperone_id VARCHAR(36) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (user_id, chaperone_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (chaperone_id) REFERENCES pet_chaperones(id) ON DELETE CASCADE
+);  
 
 -- =============================================
 -- 0. ล้างข้อมูลเก่า
