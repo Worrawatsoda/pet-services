@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('vet-sidebar-address').textContent = fullAddress || '-';
 
         if (vet.image_url) {
-            // *** สำคัญ: ต้องเป็น tag img ธรรมดา ไม่มี style="..." ***
             document.getElementById('vet-hero-image').innerHTML = `<img src="/img/${vet.image_url}" alt="${vet.name}">`;
         }
 
@@ -153,21 +152,56 @@ function setupLink(id, text, href) {
     else { el.textContent = '-'; el.style.pointerEvents = 'none'; el.style.color = '#999'; }
 }
 
+// [UPDATED] Load Reviews with Show More button
 async function loadReviews(type, id) {
     try {
         const res = await fetch(`/api/reviews?type=${type}&id=${id}`);
         const reviews = await res.json();
         const container = document.getElementById('reviews-list');
-        if (reviews.length === 0) { container.innerHTML = '<p class="text-muted">No reviews yet.</p>'; return; }
-        container.innerHTML = reviews.map(r => `
+        
+        if (reviews.length === 0) { 
+            container.innerHTML = '<p class="text-muted">No reviews yet.</p>'; 
+            return; 
+        }
+
+        const createReviewCard = (r) => `
             <div class="card review-card">
                 <div class="card-content">
-                    <div class="review-meta"><span class="reviewer-name">${r.reviewer_name || 'User'}</span><span class="dot">•</span><span class="review-date">${new Date(r.date).toLocaleDateString()}</span></div>
+                    <div class="review-meta">
+                        <span class="reviewer-name">${r.reviewer_name || 'User'}</span>
+                        <span class="dot">•</span>
+                        <span class="review-date">${new Date(r.date).toLocaleDateString()}</span>
+                    </div>
                     <div class="review-rating">${generateStarSVG(r.rating)}</div>
                     <h4 class="review-title">${r.title || ''}</h4>
                     <p class="review-body">${r.comment || ''}</p>
                 </div>
-            </div>`).join('');
+            </div>`;
+
+        // 1. Show only first 3
+        const firstThree = reviews.slice(0, 3);
+        container.innerHTML = firstThree.map(createReviewCard).join('');
+
+        // 2. Show More Button if > 3
+        if (reviews.length > 3) {
+            const btnContainer = document.createElement('div');
+            btnContainer.style.textAlign = 'center';
+            btnContainer.style.marginTop = '1rem';
+
+            const showMoreBtn = document.createElement('button');
+            showMoreBtn.className = 'button button-outline button-sm';
+            showMoreBtn.innerText = 'Show More Reviews';
+            showMoreBtn.style.minWidth = '150px';
+            
+            showMoreBtn.onclick = () => {
+                const restReviews = reviews.slice(3);
+                btnContainer.remove();
+                container.insertAdjacentHTML('beforeend', restReviews.map(createReviewCard).join(''));
+            };
+
+            btnContainer.appendChild(showMoreBtn);
+            container.appendChild(btnContainer);
+        }
     } catch (err) { console.error(err); }
 }
 

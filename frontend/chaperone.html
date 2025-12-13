@@ -1,27 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pet Transport - DogGoDoc</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <nav class="site-header">
         <div class="container header-container">
+
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
             <a href="/" class="logo-link">
                 <div class="logo-icon-wrapper">
                     <img class="logo-icon" src="img/DoggoDoc_LOGO.jpg" alt="Logo">
                 </div>
             </a>
+
             <div class="header-nav">
                 <a href="/veterinary" class="nav-link">Find a Vet</a>
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
-            <div class="header-nav-auth"></div>
+
+            <div class="header-nav-auth">
+                <a href="/login" class="button button-ghost button-sm">Sign In</a>
+                <a href="/register" class="button button-sm">Get Started</a>
+            </div>
         </div>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
     <main class="chap-main">
         <section class="chap-header-section">
             <div class="container">
@@ -29,8 +47,10 @@
                 <p class="chap-page-desc">ติดต่อผู้ดูแลสัตว์เลี้ยงและผู้ให้บริการขนส่งสัตว์เลี้ยงที่น่าเชื่อถือ</p>
 
                 <div class="chap-search-bar" style="margin-top: 1.5rem; display: flex; gap: 0.5rem; max-width: 600px;">
-                    <input type="text" id="search-input" class="input" placeholder="ค้นหาชื่อคนขับหรือชื่อผู้ให้บริการ...">
-                    <button id="search-btn" class="button" style="background-color: #00858C; color: white;">Search</button>
+                    <input type="text" id="search-input" class="input"
+                        placeholder="ค้นหาชื่อคนขับหรือชื่อผู้ให้บริการ...">
+                    <button id="search-btn" class="button"
+                        style="background-color: #00858C; color: white;">Search</button>
                 </div>
 
             </div>
@@ -42,36 +62,49 @@
                     <div class="card filter-card">
                         <div class="card-header filter-header">
                             <h3 class="card-title" style="font-size: 1.125rem;">Filters</h3>
-                            <button class="button button-ghost button-sm" style="height: auto; padding: 0.25rem;">Clear</button>
+                            <button class="button button-ghost button-sm"
+                                style="height: auto; padding: 0.25rem;">Clear</button>
                         </div>
                         <div class="card-content filter-content">
                             <div class="filter-group">
                                 <h4>Services</h4>
                                 <div class="checkbox-list">
-                                    <label class="checkbox-item"><input type="checkbox" name="chap_service" value="Vet Appointments"> Vet Appointments</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="chap_service" value="Airport Transport"> Airport Transport</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="chap_service" value="Long Distance"> Long Distance</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="chap_service" value="Emergency Transport"> Emergency Transport</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="chap_service"
+                                            value="Vet Appointments"> Vet Appointments</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="chap_service"
+                                            value="Airport Transport"> Airport Transport</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="chap_service"
+                                            value="Long Distance"> Long Distance</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="chap_service"
+                                            value="Emergency Transport"> Emergency Transport</label>
                                 </div>
                             </div>
 
                             <div class="filter-group">
                                 <h4>Vehicle Type</h4>
                                 <div class="checkbox-list">
-                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="Sedan"> Sedan</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="SUV"> SUV</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="Minivan"> Minivan</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="Climate-Controlled Van"> Climate-Controlled Van</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="Sedan">
+                                        Sedan</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="SUV">
+                                        SUV</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="vehicle" value="Minivan">
+                                        Minivan</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="vehicle"
+                                            value="Climate-Controlled Van"> Climate-Controlled Van</label>
                                 </div>
                             </div>
 
                             <div class="filter-group">
                                 <h4>Pet Types</h4>
                                 <div class="checkbox-list">
-                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Dogs"> Dogs</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Cats"> Cats</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Birds"> Birds</label>
-                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Small Animals"> Small Animals</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Dogs">
+                                        Dogs</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Cats">
+                                        Cats</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="pet_type" value="Birds">
+                                        Birds</label>
+                                    <label class="checkbox-item"><input type="checkbox" name="pet_type"
+                                            value="Small Animals"> Small Animals</label>
                                 </div>
                             </div>
 
@@ -80,7 +113,9 @@
                                     <h4>Minimum Rating</h4>
                                     <span id="rating-val-display">Any</span>
                                 </div>
-                                <input type="range" min="0" max="5" step="0.5" class="range-input" id="filter-rating" value="0" oninput="document.getElementById('rating-val-display').innerText = this.value > 0 ? this.value + '+' : 'Any'">
+                                <input type="range" min="0" max="5" step="0.5" class="range-input" id="filter-rating"
+                                    value="0"
+                                    oninput="document.getElementById('rating-val-display').innerText = this.value > 0 ? this.value + '+' : 'Any'">
                                 <div class="range-labels">
                                     <span>0</span>
                                     <span>5</span>
@@ -93,7 +128,14 @@
                 <div class="chap-results">
                     <div class="results-header">
                         <p class="text-muted" id="chap-result-count">Loading...</p>
-                        <button class="button button-outline button-sm mobile-filter-toggle">Filters</button>
+                        <button class="button button-outline button-sm mobile-filter-toggle">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="margin-right: 4px;">
+                                <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                            </svg>
+                            Filters
+                        </button>
                     </div>
                     <div id="chap-card-container" class="chap-card-grid"></div>
                 </div>
@@ -103,4 +145,5 @@
     <script src="js/chaperone.js"></script>
     <script src="js/nav-auth.js"></script>
 </body>
+
 </html>

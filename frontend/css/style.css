@@ -240,7 +240,7 @@ a {
 .site-header {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 1001;
     width: 100%;
     border-bottom: 1px solid oklch(from var(--border) l c h / 0.4);
     background-color: oklch(from var(--background) l c h / 0.95);
@@ -404,14 +404,14 @@ body {
     padding: 40px 30px;
     width: 100%;
     max-width: 360px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: start;
     transition: transform 0.5s, box-shadow 0.5s;
 }
 
 .card-homepage:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .card-icon {
@@ -419,7 +419,7 @@ body {
     margin-bottom: 5px;
 }
 
-.card-homepage h3{
+.card-homepage h3 {
     font-size: 24px;
     color: #000000;
     font-weight: bold;
@@ -445,6 +445,7 @@ body {
     width: 100%;
     transition: background 0.3s;
 }
+
 .btn-card:hover {
     background: #00796b;
 }
@@ -457,13 +458,14 @@ body {
     text-align: center;
     margin-bottom: 50px;
 
-    width: 100vw; 
+    width: 100vw;
     position: relative;
     left: 50%;
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
 }
+
 .why-section h2 {
     font-size: 36px;
     color: #333333;
@@ -482,7 +484,7 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap : 30px;
+    gap: 30px;
     margin-top: 50px;
     padding: 0 20px;
 }
@@ -497,7 +499,7 @@ body {
     font-size: 24px;
     margin-bottom: 20px;
 }
-        
+
 .feature h4 {
     font-size: 18px;
     color: #333;
@@ -515,24 +517,35 @@ body {
 
 /* สไตล์สำหรับปุ่มที่มีไอคอน (จาก components/ui/button.tsx) */
 .button .button-icon {
-    width: 1rem; /* size-4 */
-    height: 1rem; /* size-4 */
-    margin-right: 0.5rem; /* mr-2 */
+    width: 1rem;
+    /* size-4 */
+    height: 1rem;
+    /* size-4 */
+    margin-right: 0.5rem;
+    /* mr-2 */
 }
+
 .button.button-icon-only {
-    padding: 0.5rem; /* size-icon */
-    width: 2.25rem; /* size-icon */
-    height: 2.25rem; /* size-icon */
+    padding: 0.5rem;
+    /* size-icon */
+    width: 2.25rem;
+    /* size-icon */
+    height: 2.25rem;
+    /* size-icon */
 }
+
 .button.button-icon-only .button-icon {
     margin-right: 0;
 }
+
 .button.button-outline {
     border: 1px solid var(--input);
     background-color: transparent;
     color: var(--foreground);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-xs */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    /* shadow-xs */
 }
+
 .button.button-outline:hover {
     background-color: var(--accent);
     color: var(--accent-foreground);
@@ -541,113 +554,156 @@ body {
 
 /* เลย์เอาต์หน้า Profile (จาก app/profile/page.tsx) */
 .profile-main {
-    padding-top: 3rem; /* py-12 */
-    padding-bottom: 3rem; /* py-12 */
+    padding-top: 3rem;
+    /* py-12 */
+    padding-bottom: 3rem;
+    /* py-12 */
     flex: 1 1 0%;
 }
+
 .profile-container {
-    max-width: 1152px; /* max-w-6xl */
+    max-width: 1152px;
+    /* max-w-6xl */
 }
 
 .profile-page-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem; /* mb-8 */
+    margin-bottom: 2rem;
+    /* mb-8 */
 }
+
 .profile-page-header h1 {
-    font-size: 2.25rem; /* text-4xl */
+    font-size: 2.25rem;
+    /* text-4xl */
     line-height: 2.5rem;
-    font-weight: 700; /* font-bold */
-    margin-bottom: 0.5rem; /* mb-2 */
+    font-weight: 700;
+    /* font-bold */
+    margin-bottom: 0.5rem;
+    /* mb-2 */
 }
+
 .profile-page-header p {
     color: var(--muted-foreground);
 }
 
 .profile-grid {
     display: grid;
-    gap: 2rem; /* gap-8 */
+    gap: 2rem;
+    /* gap-8 */
 }
 
 .profile-section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: 1rem;
+    /* mb-4 */
 }
+
 .header-with-icon {
     display: flex;
     align-items: center;
-    gap: 0.5rem; /* gap-2 */
+    gap: 0.5rem;
+    /* gap-2 */
 }
+
 .header-with-icon .icon {
-    width: 1.5rem; /* h-6 w-6 */
-    height: 1.5rem; /* h-6 w-6 */
+    width: 1.5rem;
+    /* h-6 w-6 */
+    height: 1.5rem;
+    /* h-6 w-6 */
     color: var(--primary);
 }
+
 .profile-section-header h2 {
-    font-size: 1.5rem; /* text-2xl */
+    font-size: 1.5rem;
+    /* text-2xl */
     line-height: 2rem;
-    font-weight: 700; /* font-bold */
+    font-weight: 700;
+    /* font-bold */
 }
 
 
 /* สไตล์ Favorites (จาก app/profile/page.tsx) */
 .favorites-grid {
     display: grid;
-    gap: 1.5rem; /* gap-6 */
+    gap: 1.5rem;
+    /* gap-6 */
 }
+
 @media (min-width: 768px) {
     .favorites-grid {
-        grid-template-columns: 1fr 1fr; /* md:grid-cols-2 */
+        grid-template-columns: 1fr 1fr;
+        /* md:grid-cols-2 */
     }
 }
+
 .favorites-empty-state {
     text-align: center;
-    padding-top: 2rem; /* py-8 */
-    padding-bottom: 2rem; /* py-8 */
+    padding-top: 2rem;
+    /* py-8 */
+    padding-bottom: 2rem;
+    /* py-8 */
 }
+
 .favorites-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* space-y-3 */
+    gap: 0.75rem;
+    /* space-y-3 */
 }
+
 .favorite-item-link {
     display: block;
-    padding: 0.75rem; /* p-3 */
+    padding: 0.75rem;
+    /* p-3 */
     border: 1px solid var(--border);
     border-radius: var(--radius);
     transition: background-color 0.2s;
 }
+
 .favorite-item-link:hover {
     background-color: var(--accent);
 }
+
 .favorite-item-link p:first-child {
-    font-weight: 500; /* font-medium */
+    font-weight: 500;
+    /* font-medium */
 }
+
 .favorite-item-link p:last-child {
-    font-size: 0.875rem; /* text-sm */
+    font-size: 0.875rem;
+    /* text-sm */
     color: var(--muted-foreground);
 }
 
 /* สไตล์ Reviews (จาก app/profile/page.tsx) */
 .reviews-card-content {
-    padding-top: 2rem; /* py-8 */
-    padding-bottom: 2rem; /* py-8 */
+    padding-top: 2rem;
+    /* py-8 */
+    padding-bottom: 2rem;
+    /* py-8 */
     text-align: center;
 }
+
 .reviews-card-content .icon {
-    width: 3rem; /* h-12 w-12 */
-    height: 3rem; /* h-12 w-12 */
+    width: 3rem;
+    /* h-12 w-12 */
+    height: 3rem;
+    /* h-12 w-12 */
     color: var(--muted-foreground);
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: 1rem;
+    /* mb-4 */
 }
+
 .reviews-card-content p {
     color: var(--muted-foreground);
-    margin-bottom: 1rem; /* mb-4 */
+    margin-bottom: 1rem;
+    /* mb-4 */
 }
 
 /* veterinary.css */
@@ -660,12 +716,14 @@ body {
     border-bottom: 1px solid var(--border);
     margin-bottom: 2rem;
 }
+
 .vet-page-title {
     font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
+
 .vet-page-desc {
     font-size: 1.125rem;
     color: var(--muted-foreground);
@@ -677,19 +735,25 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    max-width: 48rem; /* max-w-3xl */
+    max-width: 48rem;
+    /* max-w-3xl */
 }
+
 @media (min-width: 768px) {
     .vet-search-bar {
         flex-direction: row;
     }
 }
+
 .vet-search-bar .input {
     flex: 1;
-    height: 3rem; /* h-12 */
+    height: 3rem;
+    /* h-12 */
 }
+
 .vet-search-bar .button {
-    height: 3rem; /* h-12 */
+    height: 3rem;
+    /* h-12 */
     padding-left: 2rem;
     padding-right: 2rem;
 }
@@ -698,45 +762,55 @@ body {
 .vet-content-section {
     padding-bottom: 2rem;
 }
+
 .vet-content-container {
     display: flex;
-    gap: 2rem; /* gap-8 */
+    gap: 2rem;
+    /* gap-8 */
 }
 
 /* Sidebar & Filters */
 .vet-sidebar {
     display: none;
-    width: 20rem; /* w-80 */
+    width: 20rem;
+    /* w-80 */
     flex-shrink: 0;
 }
+
 @media (min-width: 768px) {
     .vet-sidebar {
         display: block;
     }
 }
+
 .filter-card {
     position: sticky;
     top: 5rem;
 }
+
 .filter-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .filter-content {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
+
 .filter-group h4 {
     font-weight: 500;
     margin-bottom: 0.75rem;
 }
+
 .checkbox-list {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .checkbox-item {
     display: flex;
     align-items: center;
@@ -745,20 +819,24 @@ body {
     color: var(--foreground);
     cursor: pointer;
 }
+
 /* Range Slider */
 .range-header {
     display: flex;
     justify-content: space-between;
     margin-bottom: 0.75rem;
 }
+
 .range-header span {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
+
 .range-input {
     width: 100%;
     margin-bottom: 0.5rem;
 }
+
 .range-labels {
     display: flex;
     justify-content: space-between;
@@ -770,17 +848,20 @@ body {
 .vet-results {
     flex: 1;
 }
+
 .results-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
+
 .mobile-filter-toggle {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
+
 @media (min-width: 768px) {
     .mobile-filter-toggle {
         display: none;
@@ -792,23 +873,29 @@ body {
     display: grid;
     gap: 1.5rem;
 }
+
 @media (min-width: 768px) {
     .vet-card-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 .vet-card {
     overflow: hidden;
     transition: box-shadow 0.2s;
 }
+
 .vet-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 .vet-card-image {
     position: relative;
-    height: 12rem; /* h-48 */
+    height: 12rem;
+    /* h-48 */
     background-color: var(--muted);
 }
+
 .image-placeholder {
     width: 100%;
     height: 100%;
@@ -828,15 +915,18 @@ body {
     font-weight: 500;
     line-height: 1;
 }
+
 .vet-card-image .badge {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
 }
+
 .badge-accent {
     background-color: var(--accent);
     color: var(--accent-foreground);
 }
+
 .badge-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
@@ -846,15 +936,18 @@ body {
 .vet-card-content {
     padding: 1.5rem;
 }
+
 .vet-card-header {
     margin-bottom: 0.75rem;
 }
+
 .vet-name {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
     line-height: 1.4;
 }
+
 .vet-location {
     display: flex;
     align-items: center;
@@ -862,22 +955,26 @@ body {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
+
 .vet-location .distance {
     color: var(--primary);
     font-weight: 500;
 }
+
 .vet-rating {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
+
 .rating-stars {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     font-weight: 600;
 }
+
 .star-filled {
     color: var(--primary);
     fill: currentColor;
@@ -890,12 +987,15 @@ body {
     margin-bottom: 1rem;
     font-size: 0.875rem;
 }
+
 .detail-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--muted-foreground); /* หรือสีปกติแล้วแต่ชอบ */
+    color: var(--muted-foreground);
+    /* หรือสีปกติแล้วแต่ชอบ */
 }
+
 .detail-item svg {
     color: var(--muted-foreground);
     flex-shrink: 0;
@@ -916,22 +1016,26 @@ body {
     color: var(--primary);
     margin-bottom: 1rem;
 }
+
 /* chaperone.css */
 
 /* Header Section */
 .chap-header-section {
-    background-color: oklch(from var(--primary) l c h / 0.05);  /* สีพื้นหลังต่างจาก Vet นิดหน่อย */
+    background-color: oklch(from var(--primary) l c h / 0.05);
+    /* สีพื้นหลังต่างจาก Vet นิดหน่อย */
     padding-top: 3rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 2rem;
 }
+
 .chap-page-title {
     font-size: 2.25rem;
     line-height: 2.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
 }
+
 .chap-page-desc {
     font-size: 1.125rem;
     color: var(--muted-foreground);
@@ -945,15 +1049,18 @@ body {
     gap: 0.75rem;
     max-width: 48rem;
 }
+
 @media (min-width: 768px) {
     .chap-search-bar {
         flex-direction: row;
     }
 }
+
 .chap-search-bar .input {
     flex: 1;
     height: 3rem;
 }
+
 .chap-search-bar .button {
     height: 3rem;
     padding-left: 2rem;
@@ -964,6 +1071,7 @@ body {
 .chap-content-section {
     padding-bottom: 2rem;
 }
+
 .chap-content-container {
     display: flex;
     gap: 2rem;
@@ -975,34 +1083,41 @@ body {
     width: 20rem;
     flex-shrink: 0;
 }
+
 @media (min-width: 768px) {
     .chap-sidebar {
         display: block;
     }
 }
+
 .filter-card {
     position: sticky;
     top: 5rem;
 }
+
 .filter-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .filter-content {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 }
+
 .filter-group h4 {
     font-weight: 500;
     margin-bottom: 0.75rem;
 }
+
 .checkbox-list {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .checkbox-item {
     display: flex;
     align-items: center;
@@ -1016,17 +1131,20 @@ body {
 .chap-results {
     flex: 1;
 }
+
 .results-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
+
 .mobile-filter-toggle {
     display: flex;
     gap: 0.5rem;
     align-items: center;
 }
+
 @media (min-width: 768px) {
     .mobile-filter-toggle {
         display: none;
@@ -1038,23 +1156,28 @@ body {
     display: grid;
     gap: 1.5rem;
 }
+
 @media (min-width: 768px) {
     .chap-card-grid {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 .chap-card {
     overflow: hidden;
     transition: box-shadow 0.2s;
 }
+
 .chap-card:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
+
 .chap-card-image {
     position: relative;
     height: 12rem;
     background-color: var(--muted);
 }
+
 .image-placeholder {
     width: 100%;
     height: 100%;
@@ -1071,6 +1194,7 @@ body {
     display: flex;
     gap: 0.5rem;
 }
+
 .badge {
     display: inline-flex;
     align-items: center;
@@ -1081,14 +1205,17 @@ body {
     font-weight: 500;
     line-height: 1;
 }
+
 .badge-primary {
     background-color: var(--primary);
     color: var(--primary-foreground);
 }
+
 .badge-accent {
     background-color: var(--accent);
     color: var(--accent-foreground);
 }
+
 .badge-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
@@ -1098,15 +1225,18 @@ body {
 .chap-card-content {
     padding: 1.5rem;
 }
+
 .chap-card-header {
     margin-bottom: 0.75rem;
 }
+
 .chap-name {
     font-size: 1.25rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
     line-height: 1.4;
 }
+
 .chap-location {
     display: flex;
     align-items: center;
@@ -1114,6 +1244,7 @@ body {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
+
 .chap-location .distance {
     color: var(--primary);
     font-weight: 500;
@@ -1122,24 +1253,29 @@ body {
 .chap-stats {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* ให้ราคาไปอยู่ขวาสุด */
+    justify-content: space-between;
+    /* ให้ราคาไปอยู่ขวาสุด */
     margin-bottom: 1rem;
 }
+
 .rating-group {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 .rating-stars {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     font-weight: 600;
 }
+
 .star-filled {
     color: var(--primary);
     fill: currentColor;
 }
+
 .price-range {
     font-size: 0.875rem;
     font-weight: 500;
@@ -1153,12 +1289,14 @@ body {
     margin-bottom: 1rem;
     font-size: 0.875rem;
 }
+
 .detail-item {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     color: var(--muted-foreground);
 }
+
 .detail-item svg {
     color: var(--muted-foreground);
     flex-shrink: 0;
@@ -1178,7 +1316,8 @@ body {
 }
 
 .about-container {
-    max-width: 56rem; /* max-w-4xl */
+    max-width: 56rem;
+    /* max-w-4xl */
 }
 
 /* Hero Section */
@@ -1188,25 +1327,32 @@ body {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
+
 .about-title {
-    font-size: 2.25rem; /* 4xl */
+    font-size: 2.25rem;
+    /* 4xl */
     line-height: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
+
 @media (min-width: 768px) {
     .about-title {
-        font-size: 3rem; /* 5xl */
+        font-size: 3rem;
+        /* 5xl */
         line-height: 1;
     }
 }
+
 .about-description {
-    font-size: 1.125rem; /* lg */
+    font-size: 1.125rem;
+    /* lg */
     color: var(--muted-foreground);
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
 }
+
 .text-center {
     text-align: center;
 }
@@ -1216,12 +1362,14 @@ body {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
+
 @media (min-width: 768px) {
     .about-section {
         padding-top: 6rem;
         padding-bottom: 6rem;
     }
 }
+
 .bg-muted {
     background-color: oklch(from var(--muted) l c h / 0.3);
 }
@@ -1230,17 +1378,21 @@ body {
 .mission-grid {
     display: flex;
     flex-direction: column;
-    gap: 3rem; /* gap-12 */
+    gap: 3rem;
+    /* gap-12 */
 }
+
 .mission-card {
     border-width: 2px;
 }
+
 .mission-content {
     padding: 2rem;
     display: flex;
     align-items: flex-start;
     gap: 1rem;
 }
+
 @media (min-width: 768px) {
     .mission-content {
         padding: 3rem;
@@ -1248,46 +1400,60 @@ body {
 }
 
 .mission-icon-wrapper {
-    width: 3rem; /* h-12 */
-    height: 3rem; /* w-12 */
+    width: 3rem;
+    /* h-12 */
+    height: 3rem;
+    /* w-12 */
     border-radius: 9999px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
+
 .icon-primary {
     background-color: oklch(from var(--primary) l c h / 0.1);
 }
+
 .icon-primary .mission-dot {
     background-color: var(--primary);
 }
+
 .icon-accent {
     background-color: oklch(from var(--accent) l c h / 0.1);
 }
+
 .icon-accent .mission-dot {
     background-color: var(--accent);
 }
+
 .mission-dot {
-    width: 1.5rem; /* w-6 */
-    height: 1.5rem; /* h-6 */
+    width: 1.5rem;
+    /* w-6 */
+    height: 1.5rem;
+    /* h-6 */
     border-radius: 9999px;
 }
 
 .section-title {
-    font-size: 1.5rem; /* 2xl */
+    font-size: 1.5rem;
+    /* 2xl */
     font-weight: 700;
     margin-bottom: 1rem;
 }
+
 @media (min-width: 768px) {
     .section-title {
-        font-size: 1.875rem; /* 3xl */
+        font-size: 1.875rem;
+        /* 3xl */
     }
 }
+
 .text-relaxed {
     line-height: 1.625;
     font-size: 1.125rem;
 }
+
 /* vet-detail.css */
 
 .vet-detail-main {
@@ -1306,13 +1472,17 @@ body {
 /* Hero Image */
 .vet-hero-image {
     position: relative;
-    height: 24rem; /* h-96 */
+    height: 24rem;
+    /* h-96 */
     width: 100%;
-    border-radius: 0.75rem; /* rounded-xl */
+    border-radius: 0.75rem;
+    /* rounded-xl */
     overflow: hidden;
-    margin-bottom: 2rem; /* mb-8 */
+    margin-bottom: 2rem;
+    /* mb-8 */
     background-color: var(--muted);
 }
+
 .image-placeholder {
     width: 100%;
     height: 100%;
@@ -1320,6 +1490,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .hero-badge {
     position: absolute;
     top: 1rem;
@@ -1339,12 +1510,14 @@ body {
     font-weight: 500;
     line-height: 1;
 }
+
 .badge-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
     padding: 0.25rem 0.75rem;
     font-size: 0.875rem;
 }
+
 .badge-accent {
     background-color: var(--accent);
     color: var(--accent-foreground);
@@ -1355,9 +1528,11 @@ body {
     display: grid;
     gap: 2rem;
 }
+
 @media (min-width: 1024px) {
     .vet-detail-grid {
-        grid-template-columns: 2fr 1fr; /* lg:grid-cols-3 (col-span-2 space-y-8) */
+        grid-template-columns: 2fr 1fr;
+        /* lg:grid-cols-3 (col-span-2 space-y-8) */
     }
 }
 
@@ -1365,16 +1540,19 @@ body {
 .vet-info-col {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* space-y-8 */
+    gap: 2rem;
+    /* space-y-8 */
 }
 
 /* Header Info */
 .vet-title {
-    font-size: 2.25rem; /* 4xl */
+    font-size: 2.25rem;
+    /* 4xl */
     font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.2;
 }
+
 .vet-meta {
     display: flex;
     flex-wrap: wrap;
@@ -1382,33 +1560,43 @@ body {
     gap: 1rem;
     margin-bottom: 1rem;
 }
+
 .rating-box {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 .rating-box.large .rating-val {
-    font-size: 1.5rem; /* text-2xl */
+    font-size: 1.5rem;
+    /* text-2xl */
 }
+
 .star-icon {
     color: var(--primary);
     fill: currentColor;
 }
+
 .rating-val {
-    font-size: 1.25rem; /* xl */
+    font-size: 1.25rem;
+    /* xl */
     font-weight: 600;
 }
+
 .review-count {
     color: var(--muted-foreground);
 }
+
 .location-box {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     color: var(--muted-foreground);
 }
+
 .vet-desc {
-    font-size: 1.125rem; /* lg */
+    font-size: 1.125rem;
+    /* lg */
     color: var(--muted-foreground);
     line-height: 1.75;
 }
@@ -1417,8 +1605,10 @@ body {
 .detail-card .card-content {
     padding: 1.5rem;
 }
+
 .card-heading {
-    font-size: 1.5rem; /* 2xl */
+    font-size: 1.5rem;
+    /* 2xl */
     font-weight: 600;
     margin-bottom: 1rem;
 }
@@ -1434,8 +1624,10 @@ body {
 .hours-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; /* space-y-2 */
+    gap: 0.5rem;
+    /* space-y-2 */
 }
+
 .hours-row {
     display: flex;
     justify-content: space-between;
@@ -1443,9 +1635,11 @@ body {
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--border);
 }
+
 .hours-row:last-child {
     border-bottom: none;
 }
+
 .hours-row span:first-child {
     font-weight: 500;
     text-transform: capitalize;
@@ -1457,32 +1651,43 @@ body {
     flex-direction: column;
     gap: 0.75rem;
 }
+
 .feature-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
 }
-.text-primary { color: var(--primary); }
-.text-accent { color: var(--accent); }
+
+.text-primary {
+    color: var(--primary);
+}
+
+.text-accent {
+    color: var(--accent);
+}
 
 /* Reviews Section */
 .reviews-section {
     margin-top: 1rem;
 }
+
 .reviews-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
+
 .reviews-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
+
 .review-card .card-content {
     padding: 1.5rem;
 }
+
 .review-meta {
     display: flex;
     align-items: center;
@@ -1491,31 +1696,38 @@ body {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
+
 .reviewer-name {
     font-weight: 600;
     color: var(--foreground);
 }
+
 .review-rating {
     display: flex;
     align-items: center;
     gap: 0.25rem;
-    margin-bottom: 0.75rem; /* mb-2 */
+    margin-bottom: 0.75rem;
+    /* mb-2 */
 }
+
 .star-icon.small {
     width: 1rem;
     height: 1rem;
     color: var(--primary);
     fill: currentColor;
 }
+
 .review-title {
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
+
 .review-body {
     color: var(--muted-foreground);
     line-height: 1.6;
     margin-bottom: 1rem;
 }
+
 .review-actions {
     display: flex;
     gap: 0.5rem;
@@ -1527,34 +1739,45 @@ body {
     flex-direction: column;
     gap: 1.5rem;
 }
+
 /* Contact Card */
 .contact-list {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
+
 .contact-item {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
 }
+
 .contact-item svg {
     margin-top: 0.2rem;
     flex-shrink: 0;
 }
+
 .contact-label {
     font-weight: 500;
 }
-.contact-val, .contact-link {
+
+.contact-val,
+.contact-link {
     font-size: 0.875rem;
 }
+
 .contact-link {
     color: var(--primary);
 }
+
 .contact-link:hover {
     text-decoration: underline;
 }
-.mt-4 { margin-top: 1rem; }
+
+.mt-4 {
+    margin-top: 1rem;
+}
 
 /* Quick Info */
 .quick-info-list {
@@ -1563,12 +1786,17 @@ body {
     gap: 0.75rem;
     font-size: 0.875rem;
 }
+
 .quick-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.font-medium { font-weight: 500; }
+
+.font-medium {
+    font-weight: 500;
+}
+
 /* chap-detail.css */
 
 /* Reusing main structure from vet-detail.css */
@@ -1594,6 +1822,7 @@ body {
     margin-bottom: 2rem;
     background-color: var(--muted);
 }
+
 .image-placeholder {
     width: 100%;
     height: 100%;
@@ -1601,6 +1830,7 @@ body {
     align-items: center;
     justify-content: center;
 }
+
 .hero-badges {
     position: absolute;
     top: 1rem;
@@ -1620,14 +1850,17 @@ body {
     font-weight: 500;
     line-height: 1;
 }
+
 .badge-primary {
     background-color: var(--primary);
     color: var(--primary-foreground);
 }
+
 .badge-accent {
     background-color: var(--accent);
     color: var(--accent-foreground);
 }
+
 .badge-secondary {
     background-color: var(--secondary);
     color: var(--secondary-foreground);
@@ -1638,6 +1871,7 @@ body {
     display: grid;
     gap: 2rem;
 }
+
 @media (min-width: 1024px) {
     .chap-detail-grid {
         grid-template-columns: 2fr 1fr;
@@ -1650,6 +1884,7 @@ body {
     flex-direction: column;
     gap: 2rem;
 }
+
 .chap-sidebar-col {
     display: flex;
     flex-direction: column;
@@ -1663,11 +1898,13 @@ body {
     margin-bottom: 0.5rem;
     line-height: 1.2;
 }
+
 .chap-subtitle {
     font-size: 1.25rem;
     color: var(--muted-foreground);
     margin-bottom: 1rem;
 }
+
 .chap-meta {
     display: flex;
     flex-wrap: wrap;
@@ -1675,6 +1912,7 @@ body {
     gap: 1rem;
     margin-bottom: 1rem;
 }
+
 .chap-desc {
     font-size: 1.125rem;
     color: var(--muted-foreground);
@@ -1687,16 +1925,25 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
-.rating-box.large .rating-val { font-size: 1.5rem; }
+
+.rating-box.large .rating-val {
+    font-size: 1.5rem;
+}
+
 .star-icon {
     color: var(--primary);
     fill: currentColor;
 }
+
 .rating-val {
     font-size: 1.25rem;
     font-weight: 600;
 }
-.review-count { color: var(--muted-foreground); }
+
+.review-count {
+    color: var(--muted-foreground);
+}
+
 .location-box {
     display: flex;
     align-items: center;
@@ -1708,6 +1955,7 @@ body {
 .detail-card .card-content {
     padding: 1.5rem;
 }
+
 .card-heading {
     font-size: 1.5rem;
     font-weight: 600;
@@ -1726,22 +1974,28 @@ body {
     display: grid;
     gap: 1.5rem;
 }
+
 @media (min-width: 768px) {
     .grid-2-col {
         grid-template-columns: 1fr 1fr;
     }
 }
+
 .card-icon-header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
 }
+
 .card-subheading {
     font-size: 1.25rem;
     font-weight: 600;
 }
-.text-primary { color: var(--primary); }
+
+.text-primary {
+    color: var(--primary);
+}
 
 /* Check Lists */
 .check-list {
@@ -1751,11 +2005,13 @@ body {
     list-style: none;
     padding: 0;
 }
+
 .check-list li {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
+
 .check-icon {
     width: 1rem;
     height: 1rem;
@@ -1772,39 +2028,52 @@ body {
     display: grid;
     gap: 1.5rem;
 }
+
 @media (min-width: 768px) {
     .experience-grid {
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
+
 .exp-item {
     /* text-align: center; Optional alignment */
 }
+
 .exp-value {
-    font-size: 1.875rem; /* 3xl */
+    font-size: 1.875rem;
+    /* 3xl */
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 0.25rem;
 }
+
 .exp-label {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
 
 /* Reviews Section */
-.reviews-section { margin-top: 1rem; }
+.reviews-section {
+    margin-top: 1rem;
+}
+
 .reviews-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
+
 .reviews-list {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
-.review-card .card-content { padding: 1.5rem; }
+
+.review-card .card-content {
+    padding: 1.5rem;
+}
+
 .review-meta {
     display: flex;
     align-items: center;
@@ -1813,29 +2082,35 @@ body {
     font-size: 0.875rem;
     color: var(--muted-foreground);
 }
+
 .reviewer-name {
     font-weight: 600;
     color: var(--foreground);
 }
+
 .review-rating {
     display: flex;
     align-items: center;
     gap: 0.25rem;
     margin-bottom: 0.75rem;
 }
+
 .star-icon.small {
     width: 1rem;
     height: 1rem;
 }
+
 .review-title {
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
+
 .review-body {
     color: var(--muted-foreground);
     line-height: 1.6;
     margin-bottom: 1rem;
 }
+
 .review-actions {
     display: flex;
     gap: 0.5rem;
@@ -1847,22 +2122,38 @@ body {
     flex-direction: column;
     gap: 0.75rem;
 }
+
 .contact-item {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
 }
+
 .contact-item svg {
     margin-top: 0.2rem;
     flex-shrink: 0;
 }
-.contact-label { font-weight: 500; }
-.contact-val, .contact-link { font-size: 0.875rem; }
+
+.contact-label {
+    font-weight: 500;
+}
+
+.contact-val,
+.contact-link {
+    font-size: 0.875rem;
+}
+
 .contact-link {
     color: var(--primary);
 }
-.contact-link:hover { text-decoration: underline; }
-.mt-4 { margin-top: 1rem; }
+
+.contact-link:hover {
+    text-decoration: underline;
+}
+
+.mt-4 {
+    margin-top: 1rem;
+}
 
 /* Quick Info */
 .quick-info-list {
@@ -1871,15 +2162,22 @@ body {
     gap: 0.75rem;
     font-size: 0.875rem;
 }
+
 .quick-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.font-medium { font-weight: 500; }
+
+.font-medium {
+    font-weight: 500;
+}
+
 footer {
-    background-color: #1e293b; /* Slate-800 */
-    color: #f1f5f9;            /* Slate-100 */
+    background-color: #1e293b;
+    /* Slate-800 */
+    color: #f1f5f9;
+    /* Slate-100 */
     padding-top: 4rem;
     padding-bottom: 2rem;
     font-size: 0.95rem;
@@ -1913,13 +2211,15 @@ footer {
     display: block;
     width: 40px;
     height: 3px;
-    background-color: #00858C; /* Teal */
+    background-color: #00858C;
+    /* Teal */
     margin-top: 8px;
     border-radius: 2px;
 }
 
 .footer-column p {
-    color: #94a3b8; /* Slate-400 */
+    color: #94a3b8;
+    /* Slate-400 */
     line-height: 1.6;
     max-width: 24rem;
 }
@@ -1935,7 +2235,8 @@ footer {
 }
 
 .footer-column ul li a {
-    color: #cbd5e1; /* Slate-300 */
+    color: #cbd5e1;
+    /* Slate-300 */
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
@@ -1958,6 +2259,7 @@ footer {
     font-size: 0.875rem;
     margin: 0;
 }
+
 /* =========================================
    User Dropdown Styles (Navbar)
    ========================================= */
@@ -1994,7 +2296,8 @@ footer {
     border: 1px solid var(--border);
     border-radius: 0.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: none; /* ซ่อนไว้ก่อน */
+    display: none;
+    /* ซ่อนไว้ก่อน */
     flex-direction: column;
     z-index: 1000;
     overflow: hidden;
@@ -2002,7 +2305,8 @@ footer {
 }
 
 .dropdown-menu.show {
-    display: flex; /* แสดงเมื่อมี class show */
+    display: flex;
+    /* แสดงเมื่อมี class show */
 }
 
 .dropdown-item {
@@ -2037,23 +2341,25 @@ footer {
 .dropdown-item.text-danger:hover {
     background-color: #fee2e2;
 }
+
 /* =========================================
    Card Favorite Button Styles (New)
    ========================================= */
 .card-fav-btn {
     position: absolute;
     top: 0.75rem;
-    left: 0.75rem; /* วางมุมซ้ายบน ตามรูปตัวอย่าง */
+    left: 0.75rem;
+    /* วางมุมซ้ายบน ตามรูปตัวอย่าง */
     width: 2.25rem;
     height: 2.25rem;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease;
     z-index: 10;
 }
@@ -2061,13 +2367,14 @@ footer {
 .card-fav-btn:hover {
     transform: scale(1.1);
     background-color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .card-fav-btn svg {
     width: 1.25rem;
     height: 1.25rem;
-    color: #94a3b8; /* สีเทาตอนยังไม่กด */
+    color: #94a3b8;
+    /* สีเทาตอนยังไม่กด */
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
@@ -2076,34 +2383,43 @@ footer {
 
 /* สถานะ Active (กดแล้ว) */
 .card-fav-btn.active svg {
-    color: #ef4444; /* สีแดง */
+    color: #ef4444;
+    /* สีแดง */
     fill: #ef4444;
     stroke: none;
 }
+
 /* =========================================
    Card Image Improvements
    ========================================= */
 
 /* ปรับปรุง Container ของรูปภาพ */
-.vet-card-image, 
+.vet-card-image,
 .chap-card-image {
     position: relative;
-    height: 240px; /* กำหนดความสูงคงที่ ให้เท่ากันทุกการ์ด */
+    height: 240px;
+    /* กำหนดความสูงคงที่ ให้เท่ากันทุกการ์ด */
     width: 100%;
-    background-color: #f1f5f9; /* สีพื้นหลังเทาอ่อน (กรณีรูปโหลดไม่ทัน) */
-    overflow: hidden; /* ซ่อนส่วนที่ล้นออก */
-    border-bottom: 1px solid var(--border); /* เส้นขอบบางๆ ด้านล่างรูป */
+    background-color: #f1f5f9;
+    /* สีพื้นหลังเทาอ่อน (กรณีรูปโหลดไม่ทัน) */
+    overflow: hidden;
+    /* ซ่อนส่วนที่ล้นออก */
+    border-bottom: 1px solid var(--border);
+    /* เส้นขอบบางๆ ด้านล่างรูป */
 }
 
 /* ปรับปรุงตัวรูปภาพ */
-.vet-card-image img, 
+.vet-card-image img,
 .chap-card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* สำคัญ: ขยายรูปให้เต็มพื้นที่โดยไม่เสียสัดส่วน (ตัดส่วนเกินออก) */
-    object-position: center; /* จัดรูปให้อยู่กึ่งกลางเสมอ */
+    object-fit: cover;
+    /* สำคัญ: ขยายรูปให้เต็มพื้นที่โดยไม่เสียสัดส่วน (ตัดส่วนเกินออก) */
+    object-position: center;
+    /* จัดรูปให้อยู่กึ่งกลางเสมอ */
     display: block;
-    transition: transform 0.5s ease; /* เพิ่ม Effect ให้ขยับนุ่มนวล */
+    transition: transform 0.5s ease;
+    /* เพิ่ม Effect ให้ขยับนุ่มนวล */
 }
 
 /* Effect: เมื่อเอาเมาส์ชี้ที่การ์ด ให้รูปซูมเข้าเล็กน้อย */
@@ -2122,6 +2438,7 @@ footer {
     background-color: #e2e8f0;
     color: #94a3b8;
 }
+
 /* =========================================
    Detail Page Hero Image Improvements
    ========================================= */
@@ -2129,13 +2446,16 @@ footer {
 .vet-hero-image,
 .chap-hero-image {
     position: relative;
-    height: 400px; /* กำหนดความสูงคงที่ (ปรับได้ตามต้องการ) */
+    height: 400px;
+    /* กำหนดความสูงคงที่ (ปรับได้ตามต้องการ) */
     width: 100%;
     border-radius: 0.75rem;
     overflow: hidden;
     margin-bottom: 2rem;
-    background-color: #f1f5f9; /* พื้นหลังสีเทา */
-    display: flex;             /* จัดกึ่งกลางสำหรับ Placeholder */
+    background-color: #f1f5f9;
+    /* พื้นหลังสีเทา */
+    display: flex;
+    /* จัดกึ่งกลางสำหรับ Placeholder */
     align-items: center;
     justify-content: center;
 }
@@ -2145,8 +2465,10 @@ footer {
 .chap-hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;      /* ขยายรูปให้เต็มพื้นที่โดยตัดส่วนเกินออก */
-    object-position: center; /* จัดให้อยู่กึ่งกลาง */
+    object-fit: cover;
+    /* ขยายรูปให้เต็มพื้นที่โดยตัดส่วนเกินออก */
+    object-position: center;
+    /* จัดให้อยู่กึ่งกลาง */
     display: block;
 }
 
@@ -2160,6 +2482,7 @@ footer {
     justify-content: center;
     color: #94a3b8;
 }
+
 /* =========================================
    Detail Page Hero Image FIX (เพิ่มส่วนนี้)
    ========================================= */
@@ -2169,8 +2492,10 @@ footer {
 .chap-hero-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;       /* สำคัญ: ขยายรูปให้เต็มกรอบโดยตัดส่วนเกินออก ไม่บีบรูป */
-    object-position: center;  /* จัดรูปให้อยู่กึ่งกลาง */
+    object-fit: cover;
+    /* สำคัญ: ขยายรูปให้เต็มกรอบโดยตัดส่วนเกินออก ไม่บีบรูป */
+    object-position: center;
+    /* จัดรูปให้อยู่กึ่งกลาง */
     display: block;
 }
 
@@ -2181,6 +2506,257 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #e2e8f0; /* สีเทาอ่อน */
+    background-color: #e2e8f0;
+    /* สีเทาอ่อน */
     color: #94a3b8;
+}
+
+/*=========================================[NEW] Responsive Styles & Mobile Fixes=========================================*/
+
+/* 1. Hamburger Button (Default Hidden) */
+.hamburger-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--foreground);
+    z-index: 1001;
+    /* อยู่เหนือทุกอย่าง */
+}
+
+/* 2. Overlay Background */
+.nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.nav-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+/* 3. Mobile Filter Toggle Button */
+.mobile-filter-toggle {
+    display: none;
+    /* Desktop ไม่แสดง */
+}
+
+/* =========================================
+   Responsive Breakpoint: Tablet & Mobile (< 768px)
+   ========================================= */
+@media (max-width: 768px) {
+
+    /* --- Navbar Slide Menu --- */
+    .hamburger-btn {
+        display: block;
+        /* แสดงปุ่ม */
+        order: -1;
+        /* ย้ายไปซ้ายสุด */
+    }
+
+    .header-nav {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        /* ซ่อนเมนูไว้ด้านซ้าย */
+        width: 280px;
+        height: 100vh;
+        background-color: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 4rem 1.5rem 2rem 1.5rem;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+        transition: left 0.3s ease-in-out;
+        z-index: 999;
+        gap: 1.5rem;
+    }
+
+    .header-nav.active {
+        left: 0;
+        /* Slide เมนูออกมา */
+    }
+
+    .header-nav .nav-link {
+        width: 100%;
+        font-size: 1.1rem;
+        border-bottom: 1px solid #f1f5f9;
+        padding-bottom: 0.5rem;
+        display: block;
+        /* บังคับแสดง */
+    }
+
+    /* --- Filter Sidebar (Popup) --- */
+    .vet-sidebar,
+    .chap-sidebar {
+        display: none;
+        /* ซ่อนปกติ */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        /* พื้นหลังดำจางๆ */
+        z-index: 2000;
+        justify-content: center;
+        align-items: end;
+        /* เด้งมาจากด้านล่าง */
+        padding: 0;
+    }
+
+    .vet-sidebar.show,
+    .chap-sidebar.show {
+        display: flex;
+        /* แสดงเมื่อกดปุ่ม */
+    }
+
+    .filter-card {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px 20px 0 0;
+        /* โค้งมนด้านบน */
+        max-height: 85vh;
+        overflow-y: auto;
+        animation: slideUp 0.3s ease-out;
+        margin: 0;
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animation สำหรับ Popup */
+    @keyframes slideUp {
+        from {
+            transform: translateY(100%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    /* ปุ่มต่างๆ ใน Filter Mobile */
+    .mobile-filter-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: auto;
+        /* ดันไปขวาสุด */
+    }
+
+    .desktop-clear-btn {
+        display: none;
+    }
+
+    /* ซ่อนปุ่ม Clear เดิม */
+
+    .mobile-close-filter {
+        display: block !important;
+        margin-right: auto;
+        color: var(--destructive);
+    }
+
+    /* --- Grid & Layout --- */
+    .vet-content-container,
+    .chap-content-container {
+        flex-direction: column;
+    }
+
+    .vet-card-grid,
+    .chap-card-grid {
+        grid-template-columns: 1fr;
+        /* เรียงเดี่ยว */
+        gap: 1rem;
+        padding-bottom: 2rem;
+    }
+
+    /* --- Card Improvements (Mobile) --- */
+    .vet-card,
+    .chap-card {
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f1f5f9;
+    }
+
+    .vet-card-image,
+    .chap-card-image {
+        height: 160px;
+        /* ลดความสูงรูป */
+    }
+
+    .vet-card-content,
+    .chap-card-content {
+        padding: 1rem;
+        /* ลด Padding */
+    }
+
+    .vet-name,
+    .chap-name {
+        font-size: 1.1rem;
+    }
+
+    .results-header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}
+
+/* =========================================
+   Responsive Breakpoint: Mobile Small (< 575px)
+   ========================================= */
+@media (max-width: 575px) {
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .vet-card-image,
+    .chap-card-image {
+        height: 150px;
+        /* ลดลงอีกนิดสำหรับจอเล็กมาก */
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+}
+/* แก้ไข Class เดิมที่มีอยู่ หรือเพิ่มใหม่ต่อท้ายไฟล์ก็ได้ครับ */
+
+.results-header {
+    display: flex;
+    justify-content: space-between; /* ดันให้ห่างกันสุดขอบ */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap; /* เผื่อจอเล็กมากๆ */
+    gap: 10px;
+}
+
+/* ปรับปุ่ม Filter ให้ดูเด่นขึ้นบนมือถือ */
+@media (max-width: 768px) {
+    .mobile-filter-toggle {
+        display: inline-flex !important; /* บังคับแสดงบนมือถือ */
+        align-items: center;
+        background-color: #fff;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        color: var(--foreground);
+        padding: 0.4rem 0.8rem;
+        border-radius: 8px;
+        font-weight: 500;
+    }
+    
+    .mobile-filter-toggle:active {
+        background-color: #f1f5f9;
+        transform: translateY(1px);
+    }
 }

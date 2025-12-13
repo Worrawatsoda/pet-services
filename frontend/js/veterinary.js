@@ -32,6 +32,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (e.key === 'Enter') fetchClinics();
         });
     }
+
+    // =========================================================
+    // [START] ส่วนที่เพิ่มใหม่: Mobile Filter Toggle Logic
+    // =========================================================
+    const filterBtn = document.querySelector('.mobile-filter-toggle');
+    const sidebar = document.querySelector('.vet-sidebar'); // เลือก Sidebar ของหน้า Vet
+    const closeFilterBtn = document.getElementById('closeFilterBtn');
+
+    if (filterBtn && sidebar) {
+        // 1. กดปุ่ม Filter เพื่อเปิด Sidebar
+        filterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.add('show');
+        });
+
+        // 2. กดปุ่ม Close เพื่อปิด Sidebar
+        if (closeFilterBtn) {
+            closeFilterBtn.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        }
+
+        // 3. กดพื้นที่ว่างๆ ด้านนอก (Overlay) เพื่อปิด Sidebar
+        sidebar.addEventListener('click', (e) => {
+            if (e.target === sidebar) {
+                sidebar.classList.remove('show');
+            }
+        });
+    }
+    // =========================================================
+    // [END] จบส่วนที่เพิ่มใหม่
+    // =========================================================
 });
 
 async function fetchClinics() {
@@ -87,7 +119,7 @@ async function fetchClinics() {
 
         clinics.forEach(vet => {
             const imageHTML = vet.image_url 
-                ? `<img src="img/${vet.image_url}" alt="${vet.name}">` // ลบ style ออกเพื่อให้ CSS จัดการ
+                ? `<img src="img/${vet.image_url}" alt="${vet.name}">`
                 : `<div class="image-placeholder">
                      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2Z"/><path d="m3 14 5-5"/><path d="m8.5 8.5 5 5"/></svg>
                    </div>`;

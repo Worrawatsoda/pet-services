@@ -29,6 +29,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (e.key === 'Enter') fetchChaperones();
         });
     }
+
+    // =========================================================
+    // [START] ส่วนที่เพิ่มใหม่: Mobile Filter Toggle Logic
+    // =========================================================
+    const filterBtn = document.querySelector('.mobile-filter-toggle');
+    const sidebar = document.querySelector('.chap-sidebar'); // เลือก Sidebar ของหน้า Chaperone
+    const closeFilterBtn = document.getElementById('closeFilterBtn');
+
+    if (filterBtn && sidebar) {
+        // 1. กดปุ่ม Filter เพื่อเปิด Sidebar
+        filterBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // ป้องกัน Event ชนกัน
+            sidebar.classList.add('show');
+        });
+
+        // 2. กดปุ่ม Close เพื่อปิด Sidebar
+        if (closeFilterBtn) {
+            closeFilterBtn.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        }
+
+        // 3. กดพื้นที่ว่างๆ ด้านนอก (Overlay) เพื่อปิด Sidebar
+        sidebar.addEventListener('click', (e) => {
+            if (e.target === sidebar) {
+                sidebar.classList.remove('show');
+            }
+        });
+    }
+    // =========================================================
+    // [END] จบส่วนที่เพิ่มใหม่
+    // =========================================================
 });
 
 async function fetchChaperones() {
@@ -83,7 +115,7 @@ async function fetchChaperones() {
 
         providers.forEach(chap => {
              const imageHTML = chap.image_url 
-             ? `<img src="img/${chap.image_url}" alt="${chap.name}">` // ลบ style ออกเพื่อให้ CSS จัดการ
+             ? `<img src="img/${chap.image_url}" alt="${chap.name}">` 
              : `<div class="image-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2" style="color: #a3a3a3;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>`;
 
             let tagsHTML = '';

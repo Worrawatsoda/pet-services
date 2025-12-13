@@ -9,15 +9,35 @@
 <body>
     <nav class="site-header">
         <div class="container header-container">
-            <a href="/" class="logo-link"><div class="logo-icon-wrapper"><img class="logo-icon" src="/img/DoggoDoc_LOGO.jpg" alt="Logo"></div></a>
+
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
+            <a href="/" class="logo-link">
+                <div class="logo-icon-wrapper">
+                    <img class="logo-icon" src="../img/DoggoDoc_LOGO.jpg" alt="Logo">
+                </div>
+            </a>
+
             <div class="header-nav">
                 <a href="/veterinary" class="nav-link">Find a Vet</a>
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
-            <div class="header-nav-auth"></div>
+
+            <div class="header-nav-auth">
+                <a href="/login" class="button button-ghost button-sm">Sign In</a>
+                <a href="/register" class="button button-sm">Get Started</a>
+            </div>
         </div>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <main class="vet-detail-main">
         <div class="container">

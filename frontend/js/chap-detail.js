@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const badgesContainer = document.getElementById('chap-badges');
         if(driver.image_url) {
              const existingBadges = badgesContainer.outerHTML;
-             // *** สำคัญ: ต้องเป็น tag img ธรรมดา ไม่มี style="..." ***
              imgContainer.innerHTML = `<img src="/img/${driver.image_url}" alt="${driver.name}"> ${existingBadges}`;
         }
         
@@ -153,27 +152,65 @@ document.addEventListener('DOMContentLoaded', async () => {
 function fillTags(id, list) {
     document.getElementById(id).innerHTML = list ? list.split(',').map(t => `<span class="badge badge-secondary">${t}</span>`).join(' ') : '<span class="text-muted">None</span>';
 }
+
 function setupLink(id, text, href) {
     const el = document.getElementById(id);
     if(text){ el.textContent=text; el.href=href; } else { el.textContent='-'; el.style.pointerEvents='none'; el.style.color='#999'; }
 }
+
+// [UPDATED] Load Reviews with Show More button
 async function loadReviews(type, id) {
     try {
         const res = await fetch(`/api/reviews?type=${type}&id=${id}`);
         const reviews = await res.json();
         const container = document.getElementById('reviews-list');
-        if (reviews.length===0){ container.innerHTML='<p class="text-muted">No reviews yet.</p>'; return; }
-        container.innerHTML = reviews.map(r => `
+        
+        if (reviews.length === 0) { 
+            container.innerHTML = '<p class="text-muted">No reviews yet.</p>'; 
+            return; 
+        }
+
+        const createReviewCard = (r) => `
             <div class="card review-card">
                 <div class="card-content">
-                    <div class="review-meta"><span class="reviewer-name">${r.reviewer_name || 'User'}</span><span class="dot">•</span><span class="review-date">${new Date(r.date).toLocaleDateString()}</span></div>
+                    <div class="review-meta">
+                        <span class="reviewer-name">${r.reviewer_name || 'User'}</span>
+                        <span class="dot">•</span>
+                        <span class="review-date">${new Date(r.date).toLocaleDateString()}</span>
+                    </div>
                     <div class="review-rating">${generateStarSVG(r.rating)}</div>
                     <h4 class="review-title">${r.title || ''}</h4>
                     <p class="review-body">${r.comment || ''}</p>
                 </div>
-            </div>`).join('');
+            </div>`;
+
+        // 1. Show only first 3
+        const firstThree = reviews.slice(0, 3);
+        container.innerHTML = firstThree.map(createReviewCard).join('');
+
+        // 2. Show More Button if > 3
+        if (reviews.length > 3) {
+            const btnContainer = document.createElement('div');
+            btnContainer.style.textAlign = 'center';
+            btnContainer.style.marginTop = '1rem';
+
+            const showMoreBtn = document.createElement('button');
+            showMoreBtn.className = 'button button-outline button-sm';
+            showMoreBtn.innerText = 'Show More Reviews';
+            showMoreBtn.style.minWidth = '150px';
+            
+            showMoreBtn.onclick = () => {
+                const restReviews = reviews.slice(3);
+                btnContainer.remove();
+                container.insertAdjacentHTML('beforeend', restReviews.map(createReviewCard).join(''));
+            };
+
+            btnContainer.appendChild(showMoreBtn);
+            container.appendChild(btnContainer);
+        }
     } catch(e){console.error(e);}
 }
+
 function generateStarSVG(r){
     let s=''; for(let i=0;i<5;i++){ s+=`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="color:${i<r?'#f59e0b':'#e5e5e5'}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`; } return s;
 }

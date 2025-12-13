@@ -47,3 +47,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+// Mobile Navbar Toggle Logic
+document.addEventListener('DOMContentLoaded', () => {
+    // ... โค้ด Auth เดิม ...
+
+    // [ใหม่] ส่วน Navbar Mobile
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const headerNav = document.querySelector('.header-nav');
+    const navOverlay = document.getElementById('navOverlay');
+
+    if (hamburgerBtn && headerNav && navOverlay) {
+        function toggleMenu() {
+            headerNav.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        navOverlay.addEventListener('click', toggleMenu);
+    }
+});

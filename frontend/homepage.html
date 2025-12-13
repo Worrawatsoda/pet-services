@@ -19,22 +19,35 @@
 <body>
     <nav class="site-header">
         <div class="container header-container">
+
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+
             <a href="/" class="logo-link">
                 <div class="logo-icon-wrapper">
                     <img class="logo-icon" src="img/DoggoDoc_LOGO.jpg" alt="Logo">
                 </div>
             </a>
+
             <div class="header-nav">
                 <a href="/veterinary" class="nav-link">Find a Vet</a>
                 <a href="/transport" class="nav-link">Pet Transport</a>
                 <a href="/about" class="nav-link">About</a>
             </div>
+
             <div class="header-nav-auth">
                 <a href="/login" class="button button-ghost button-sm">Sign In</a>
                 <a href="/register" class="button button-sm">Get Started</a>
             </div>
         </div>
     </nav>
+    <div class="nav-overlay" id="navOverlay"></div>
 
     <section class="hero">
         <div class="container">
@@ -52,7 +65,7 @@
     <section class="card-section">
         <div class="container">
             <div class="cards-wrapper">
-                
+
                 <div class="card-homepage">
                     <div class="card-icon">
                         <img src="img/dog_plus_icon.png" alt="Vet Icon" width="56" height="56">
@@ -88,10 +101,15 @@
                     </p>
                 </div>
 
-                <div class="features-container" style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:2rem;">
+                <div class="features-container"
+                    style="display:flex; justify-content:center; gap:2rem; flex-wrap:wrap; margin-top:2rem;">
                     <div class="feature">
                         <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>
                         </div>
                         <h4>ผู้ดูแลที่ผ่านการตรวจสอบ</h4>
                         <p>
@@ -102,7 +120,12 @@
 
                     <div class="feature">
                         <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
                         </div>
                         <h4>รีวิวจริงจากผู้ใช้งาน</h4>
                         <p>
@@ -113,7 +136,12 @@
 
                     <div class="feature">
                         <div class="feature-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"
+                                fill="none" stroke="#00858C" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <polyline points="12 6 12 12 16 14" />
+                            </svg>
                         </div>
                         <h4>บริการ 24 ชั่วโมง</h4>
                         <p>
@@ -128,9 +156,16 @@
 
     <section class="cta-section">
         <div class="container">
-            <div class="cta-box" style="text-align:center; padding:3rem; background-color:rgb(239, 248, 248); border-radius:12px; margin-bottom:3rem;">
+            <div class="cta-box"
+                style="text-align:center; padding:3rem; background-color:rgb(255, 255, 255); border-radius:12px; margin-bottom:3rem;">
                 <div class="cta-icon" style="margin-bottom:1rem; color:#00858C;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
                 </div>
                 <h2 style="font-size:1.8rem; font-weight:bold; margin-bottom:1rem;">คุณเป็นผู้ใช้บริการใช่ไหม?</h2>
                 <p style="margin-bottom:1.5rem; color:#64748b; max-width:600px; margin-left:auto; margin-right:auto;">
