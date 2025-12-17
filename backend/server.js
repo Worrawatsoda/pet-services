@@ -111,7 +111,7 @@ app.get('/api/veterinary', async (req, res) => {
     if (services) {
         const sList = services.split(',');
         // Logic: มีบริการอย่างน้อย 1 อย่างที่เลือก
-        havingConditions.push(`(${sList.map(() => "services_list LIKE ?").join(' OR ')})`);
+        havingConditions.push(`(${sList.map(() => "services_list LIKE ?").join(' AND ')})`);
         sList.forEach(s => params.push(`%${s}%`));
     }
 
@@ -178,22 +178,21 @@ app.get('/api/chaperone', async (req, res) => {
 
     sql += " GROUP BY c.id";
     
-    // *** ใช้ HAVING ในการกรอง Real Rating ***
     let havingConditions = [];
 
     if (services) {
         const sList = services.split(',');
-        havingConditions.push(`(${sList.map(() => "services_list LIKE ?").join(' OR ')})`);
+        havingConditions.push(`(${sList.map(() => "services_list LIKE ?").join(' AND ')})`);
         sList.forEach(s => params.push(`%${s}%`));
     }
     if (vehicle) {
         const vList = vehicle.split(',');
-        havingConditions.push(`(${vList.map(() => "vehicles_list LIKE ?").join(' OR ')})`);
+        havingConditions.push(`(${vList.map(() => "vehicles_list LIKE ?").join(' AND ')})`);
         vList.forEach(v => params.push(`%${v}%`));
     }
     if (pets) {
         const pList = pets.split(',');
-        havingConditions.push(`(${pList.map(() => "pet_types_list LIKE ?").join(' OR ')})`);
+        havingConditions.push(`(${pList.map(() => "pet_types_list LIKE ?").join(' AND ')})`);
         pList.forEach(p => params.push(`%${p}%`));
     }
 

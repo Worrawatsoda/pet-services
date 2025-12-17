@@ -18,23 +18,6 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 2. ตารางสัตว์เลี้ยง (Pets)
-CREATE TABLE pets (
-    id VARCHAR(36) PRIMARY KEY,
-    user_id VARCHAR(36) NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    breed VARCHAR(255),
-    age INT,
-    photo_url TEXT,
-    allergies TEXT,
-    conditions TEXT,
-    medications TEXT,
-    vaccinations TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-);
-
 -- 3. ตารางคลินิกสัตวแพทย์ (Veterinary Clinics)
 -- ตัด columns services และ hours ที่เป็น JSON ออก
 CREATE TABLE veterinary_clinics (
@@ -225,9 +208,9 @@ INSERT INTO veterinary_services (clinic_id, service_name) VALUES
 ('v004', 'Specialist'), ('v004', 'Surgery'), ('v004', 'Dental'),
 ('v005', 'General Care'), ('v005', 'Vaccinations'),
 ('v006', 'General Care'), ('v006', 'Grooming'),
-('v007', 'Emergency Care'), ('v007', 'Surgery'), ('v007', 'Dental'), ('v007', 'Luxury Boarding'),
+('v007', 'Emergency Care'), ('v007', 'Surgery'), ('v007', 'Dental'),
 ('v008', 'General Care'), ('v008', 'Vaccinations'),
-('v009', 'General Care'), ('v009', 'Emergency Care'), ('v009', 'Exotic Pets'),
+('v009', 'General Care'), ('v009', 'Emergency Care'),
 ('v010', 'Surgery'), ('v010', 'X-Ray'), ('v010', 'Dental');
 
 -- =============================================
